@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FOLIO Documents — The Digital Paper Archive</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Editorial Typography: Newsreader & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&amp;family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with custom styling hooks -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#fe875d",
+            "surface-dim": "#dbdad5",
+            "on-primary-container": "#85a291",
+            "tertiary-fixed-dim": "#cac6bd",
+            "on-primary-fixed": "#052015",
+            "surface": "#fbf9f4",
+            "surface-container-highest": "#e4e2de",
+            "tertiary-fixed": "#e6e2d8",
+            "on-secondary-fixed": "#390c00",
+            "primary": "#082217",
+            "surface-variant": "#e4e2de",
+            "error": "#ba1a1a",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed": "#1c1c16",
+            "tertiary": "#1f1e18",
+            "secondary": "#a0401c",
+            "on-tertiary-container": "#9e9b92",
+            "on-secondary-container": "#722200",
+            "on-secondary-fixed-variant": "#802a05",
+            "on-error": "#ffffff",
+            "outline": "#727973",
+            "tertiary-container": "#34332c",
+            "inverse-on-surface": "#f2f1ec",
+            "secondary-fixed-dim": "#ffb59c",
+            "on-tertiary": "#ffffff",
+            "primary-fixed": "#cbead7",
+            "secondary-fixed": "#ffdbcf",
+            "on-primary-fixed-variant": "#324c3e",
+            "on-surface": "#1b1c19",
+            "surface-tint": "#496455",
+            "inverse-surface": "#30312e",
+            "on-error-container": "#93000a",
+            "surface-bright": "#fbf9f4",
+            "background": "#fbf9f4",
+            "primary-container": "#1e382b",
+            "error-container": "#ffdad6",
+            "surface-container-high": "#e9e8e3",
+            "surface-container-low": "#f5f4ef",
+            "outline-variant": "#c2c8c2",
+            "on-secondary": "#ffffff",
+            "inverse-primary": "#b0cdbb",
+            "on-tertiary-fixed-variant": "#484740",
+            "on-primary": "#ffffff",
+            "on-surface-variant": "#424844",
+            "surface-container": "#efeee9",
+            "primary-fixed-dim": "#b0cdbb",
+            "on-background": "#1b1c19"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-lg": "2rem",
+            "margin-mobile": "1.25rem",
+            "space-sm": "0.75rem",
+            "gutter-mobile": "1rem",
+            "margin": "3rem",
+            "gutter": "1.5rem",
+            "space-xl": "3.5rem",
+            "space-xs": "0.375rem",
+            "space-md": "1.25rem"
+          },
+          "fontFamily": {
+            "metric-numeral": ["Newsreader", "serif"],
+            "label-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg-mobile": ["Newsreader", "serif"],
+            "headline-md": ["Newsreader", "serif"],
+            "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "display-lg-mobile": ["Newsreader", "serif"],
+            "headline-sm": ["Newsreader", "serif"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"],
+            "body-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg": ["Newsreader", "serif"],
+            "label-md": ["Plus Jakarta Sans", "sans-serif"],
+            "display-lg": ["Newsreader", "serif"]
+          },
+          "fontSize": {
+            "metric-numeral": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "headline-md": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.015em", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.005em", "fontWeight": "500" }],
+            "body-md": ["15px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "letterSpacing": "0.005em", "fontWeight": "400" }],
+            "headline-lg": ["38px", { "lineHeight": "46px", "letterSpacing": "-0.015em", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "display-lg": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    /* Paper tactile shadow from design specification */
+    .paper-shadow {
+      box-shadow: 0 2px 8px -2px rgba(44, 45, 42, 0.04), 0 1px 3px 0 rgba(44, 45, 42, 0.02);
+    }
+    .paper-lift {
+      transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .paper-lift:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -6px rgba(28, 29, 27, 0.08), 0 2px 6px -1px rgba(28, 29, 27, 0.04);
+    }
+    .paper-stamp {
+      letter-spacing: 0.12em;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col selection:bg-surface-container-highest">
+<!-- ========================================================================= -->
+<!-- SHARED TOP NAVIGATION (Strictly derived from Shared Components JSON)      -->
+<!-- ========================================================================= -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline docked full-width top-0 sticky z-40">
+<div class="max-w-7xl mx-auto px-gutter flex justify-between items-center h-16 w-full">
+<!-- Brand & Global Nav Links -->
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md tracking-tight text-primary dark:text-inverse-primary font-normal">
+          FOLIO
+        </span>
+<nav class="hidden md:flex items-center space-x-6 pt-1">
+<!-- Inactive Link: Research -->
+<a class="text-on-surface-variant dark:text-on-tertiary-container pb-1 text-label-md font-label-md hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">
+            Research
+          </a>
+<!-- Inactive Link: Evidence -->
+<a class="text-on-surface-variant dark:text-on-tertiary-container pb-1 text-label-md font-label-md hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">
+            Evidence
+          </a>
+<!-- Active Link: Documents (The target page of this view) -->
+<a class="text-primary dark:text-inverse-primary font-semibold border-b-2 border-secondary pb-1 text-label-md font-label-md transition-colors duration-150 ease-in-out" href="#">
+            Documents
+          </a>
+</nav>
+</div>
+<!-- Trailing Elements & Context Workspace Pill -->
+<div class="flex items-center gap-4">
+<!-- Quick Search Pill Action -->
+<button class="hidden lg:flex items-center gap-2 bg-surface-container px-3 py-1.5 rounded text-body-sm font-body-sm text-on-surface-variant hover:text-primary transition-colors duration-150">
+<span class="material-symbols-outlined text-[16px]">search</span>
+<span>⌘K Search</span>
+</button>
+<!-- Trailing Primary Action / Institutional Scope Pill -->
+<div class="hidden sm:flex items-center gap-2 bg-surface-container-low border border-outline-variant px-3 py-1.5 rounded">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span class="text-label-md font-label-md text-primary">
+            Helios Foundation 2025–26 Grants
+          </span>
+<span class="text-label-sm font-label-sm text-outline border-l border-outline-variant pl-2 ml-1">
+            4 agreements
+          </span>
+</div>
+<!-- Trailing Icon Action -->
+<button aria-label="Account Settings" class="text-on-surface-variant hover:text-primary transition-colors duration-150 p-1 flex items-center">
+<span class="material-symbols-outlined text-[24px]">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- ========================================================================= -->
+<!-- MAIN EDITORIAL CONTENT CANVAS (Archival Desk Model)                       -->
+<!-- ========================================================================= -->
+<main class="flex-1 max-w-7xl w-full mx-auto px-gutter pt-8 pb-16">
+<!-- 1. Header & Actions Area -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-outline-variant">
+<div>
+<div class="flex items-center gap-2 mb-1.5">
+<span class="text-label-sm font-label-sm text-on-surface-variant tracking-wider uppercase">Institutional Archive</span>
+<span class="text-outline">/</span>
+<span class="text-label-sm font-label-sm text-primary font-semibold">Active Repository</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">
+          Your documents
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+          4 active agreements and guidelines indexed for Helios Foundation.
+        </p>
+</div>
+<!-- Action Cluster -->
+<div class="flex items-center gap-3">
+<button class="inline-flex items-center gap-2 bg-surface border border-outline-variant px-4 py-2 rounded text-label-md font-label-md text-on-surface hover:border-primary transition-colors duration-150">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+<span>Index view</span>
+</button>
+<button class="inline-flex items-center gap-2 bg-primary-container text-on-primary px-5 py-2.5 rounded text-label-md font-label-md font-medium hover:bg-primary transition-colors duration-150 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ Add documents</span>
+</button>
+</div>
+</section>
+<!-- 2. Fast Clause Search & Instant Excerpts Drawer -->
+<section class="mt-8">
+<!-- Search Input Shell -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-1.5 flex items-center gap-3 focus-within:border-primary transition-colors paper-shadow">
+<span class="material-symbols-outlined text-outline pl-2.5">search</span>
+<input class="w-full bg-transparent border-none text-body-md font-body-md text-on-surface focus:ring-0 focus:outline-none placeholder:text-outline py-2" placeholder="Search documents or clauses (e.g., 'indirect costs', 'reporting window')..." type="text" value="indirect costs"/>
+<div class="flex items-center gap-2 pr-2">
+<span class="text-label-sm font-label-sm bg-surface-container px-2 py-0.5 rounded text-on-surface-variant border border-outline-variant">
+            Esc to clear
+          </span>
+</div>
+</div>
+<!-- In-Document Excerpts Matching Drawer -->
+<div class="mt-3 bg-surface-container-low border border-outline-variant rounded p-4">
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant/60">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">find_in_page</span>
+<span class="text-label-md font-label-md text-on-surface font-semibold">
+              Found 2 matching clauses for <span class="text-secondary">“indirect costs”</span>:
+            </span>
+</div>
+<span class="text-label-sm font-label-sm text-outline">Provenance verified</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+<!-- Excerpt 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-3.5 hover:border-primary transition-colors cursor-pointer group">
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant mb-1.5">
+<span class="font-semibold text-primary group-hover:text-secondary transition-colors">Grant Guidelines § 4.3</span>
+<span class="text-outline">Page 8 · Clause 12</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface italic leading-relaxed">
+              “…<mark class="bg-secondary-fixed text-on-secondary-fixed px-0.5 rounded">indirect costs</mark> are strictly capped at 10% of total direct personnel expenditures, unless specifically augmented by Addendum B…”
+            </p>
+<div class="mt-2.5 pt-2 border-t border-surface-container flex items-center justify-between text-label-sm font-label-sm text-outline">
+<span>Helios Foundation General Terms 2025–26</span>
+<span class="text-secondary font-medium group-hover:underline">Open in sheet →</span>
+</div>
+</div>
+<!-- Excerpt 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-3.5 hover:border-primary transition-colors cursor-pointer group">
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant mb-1.5">
+<span class="font-semibold text-primary group-hover:text-secondary transition-colors">Donor Agreement § 9.1</span>
+<span class="text-outline">Page 14 · Clause 4</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface italic leading-relaxed">
+              “…administrative and <mark class="bg-secondary-fixed text-on-secondary-fixed px-0.5 rounded">indirect costs</mark> exceeding allowable ceiling require written waiver prior to Year 2 tranche release…”
+            </p>
+<div class="mt-2.5 pt-2 border-t border-surface-container flex items-center justify-between text-label-sm font-label-sm text-outline">
+<span>Grant Agreement Ref #H-882-01</span>
+<span class="text-secondary font-medium group-hover:underline">Open in sheet →</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Physical Archive Shelf (Visual Document Dossier Cards) -->
+<section class="mt-10">
+<div class="flex items-baseline justify-between mb-4">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Archival Shelf</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Structured sheets with verified legal seals and clause indices.</p>
+</div>
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Storage Tier: Primary Paper</span>
+</div>
+<!-- Asymmetrical Editorial Grid for Archival Dossiers -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+<!-- DOCUMENT 1: Grant Guidelines (Book style with dark forest accent spine) -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded paper-shadow paper-lift flex flex-col justify-between overflow-hidden relative group">
+<!-- Spine Bookmark Band -->
+<div class="h-2 bg-primary-container w-full"></div>
+<div class="p-5 flex-1 flex flex-col">
+<!-- Header meta & seal -->
+<div class="flex items-start justify-between">
+<span class="text-label-sm font-label-sm uppercase tracking-widest text-primary-container font-bold">Dossier / 01</span>
+<span class="text-label-sm font-label-sm bg-surface-container px-2 py-0.5 rounded text-on-surface-variant border border-outline-variant">
+                Active
+              </span>
+</div>
+<!-- Title & Subtitle -->
+<div class="mt-4 pb-3 border-b border-outline-variant">
+<h3 class="font-headline-sm text-headline-sm text-primary leading-snug">
+                GRANT GUIDELINES
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Helios Foundation General Terms 2025–26
+              </p>
+</div>
+<!-- Archival Metadata -->
+<div class="py-3 flex items-center gap-3 text-label-sm font-label-sm text-outline border-b border-outline-variant">
+<span>2026</span>
+<span>·</span>
+<span>32 pages</span>
+<span>·</span>
+<span>PDF/A</span>
+</div>
+<!-- In-Document Clauses Preview -->
+<div class="mt-4 flex-1">
+<span class="text-label-sm font-label-sm uppercase tracking-wider text-outline block mb-2">Key Clauses Indexed</span>
+<div class="space-y-1.5 text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex items-center gap-1.5 hover:text-secondary cursor-pointer">
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+<span>§ 5.1 Reporting Windows</span>
+</div>
+<div class="flex items-center gap-1.5 hover:text-secondary cursor-pointer">
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+<span class="font-semibold text-primary">§ 4.3 Indirect costs ceiling</span>
+</div>
+<div class="flex items-center gap-1.5 hover:text-secondary cursor-pointer">
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+<span>§ 8.2 Independent Audits</span>
+</div>
+</div>
+</div>
+<!-- Card Bottom Sheet Stamp -->
+<div class="mt-6 pt-3 border-t border-outline-variant flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline font-mono">REF #HG-25-A</span>
+<a class="text-primary font-semibold hover:text-secondary transition-colors inline-flex items-center gap-0.5" href="#">
+                Inspect <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</article>
+<!-- DOCUMENT 2: Donor Agreement (Clean ivory paper sheet with formal legal header rule) -->
+<article class="bg-surface border border-outline-variant rounded paper-shadow paper-lift flex flex-col justify-between overflow-hidden relative group">
+<!-- Fine legal rule -->
+<div class="h-0.5 bg-outline-variant w-full"></div>
+<div class="p-5 flex-1 flex flex-col">
+<!-- Header meta & seal -->
+<div class="flex items-start justify-between">
+<span class="text-label-sm font-label-sm uppercase tracking-widest text-secondary font-bold">Contract / 02</span>
+<span class="text-label-sm font-label-sm bg-[#E8EFEA] text-[#1E382B] px-2 py-0.5 rounded font-medium">
+                Fully Executed
+              </span>
+</div>
+<!-- Title & Subtitle -->
+<div class="mt-4 pb-3 border-b border-outline-variant">
+<h3 class="font-headline-sm text-headline-sm text-primary leading-snug">
+                DONOR AGREEMENT
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Grant Agreement Ref #H-882-01
+              </p>
+</div>
+<!-- Archival Metadata -->
+<div class="py-3 flex items-center gap-3 text-label-sm font-label-sm text-outline border-b border-outline-variant">
+<span>2025</span>
+<span>·</span>
+<span>18 pages</span>
+<span>·</span>
+<span>Countersigned</span>
+</div>
+<!-- Mini excerpt & Financial Parameters -->
+<div class="mt-4 flex-1">
+<span class="text-label-sm font-label-sm uppercase tracking-wider text-outline block mb-2">Obligation Matrix</span>
+<div class="bg-surface-container-lowest border border-outline-variant p-2.5 rounded text-body-sm font-body-sm">
+<div class="font-metric-numeral text-headline-sm text-primary leading-tight">
+                  $1,250,000
+                </div>
+<div class="text-label-sm font-label-sm text-outline mt-0.5">
+                  Term: 24 Months (2025–2027)
+                </div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-2.5 italic">
+                “Subject to bi-annual disbursement verification by Board of Trustees.”
+              </p>
+</div>
+<!-- Card Bottom Sheet Stamp -->
+<div class="mt-6 pt-3 border-t border-outline-variant flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline font-mono">SEAL: EXEC-VERIFIED</span>
+<a class="text-primary font-semibold hover:text-secondary transition-colors inline-flex items-center gap-0.5" href="#">
+                Inspect <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</article>
+<!-- DOCUMENT 3: Annual Impact Report (Landscape editorial booklet layout style) -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded paper-shadow paper-lift flex flex-col justify-between overflow-hidden relative group">
+<!-- Fine decorative rule -->
+<div class="h-1 bg-surface-container-highest w-full"></div>
+<div class="p-5 flex-1 flex flex-col">
+<!-- Header meta & seal -->
+<div class="flex items-start justify-between">
+<span class="text-label-sm font-label-sm uppercase tracking-widest text-outline font-bold">Report / 03</span>
+<span class="text-label-sm font-label-sm bg-[#E8EFEA] text-[#1E382B] px-2 py-0.5 rounded font-medium">
+                Approved
+              </span>
+</div>
+<!-- Title & Subtitle -->
+<div class="mt-4 pb-3 border-b border-outline-variant">
+<h3 class="font-headline-sm text-headline-sm text-primary leading-snug">
+                ANNUAL IMPACT REPORT
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Year 1 Milestone &amp; Metric Outcomes
+              </p>
+</div>
+<!-- Archival Metadata -->
+<div class="py-3 flex items-center gap-3 text-label-sm font-label-sm text-outline border-b border-outline-variant">
+<span>2025</span>
+<span>·</span>
+<span>24 pages</span>
+<span>·</span>
+<span>Audited</span>
+</div>
+<!-- Mini Status Track -->
+<div class="mt-4 flex-1">
+<span class="text-label-sm font-label-sm uppercase tracking-wider text-outline block mb-2">Milestone Ledger</span>
+<div class="space-y-2">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface">3 milestones completed</span>
+<span class="material-symbols-outlined text-[#1E382B] text-[16px]">check_circle</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">1 milestone pending</span>
+<span class="material-symbols-outlined text-outline text-[16px]">schedule</span>
+</div>
+<div class="w-full bg-surface-container h-1 rounded overflow-hidden mt-1">
+<div class="bg-primary-container h-full w-3/4"></div>
+</div>
+</div>
+</div>
+<!-- Card Bottom Sheet Stamp -->
+<div class="mt-6 pt-3 border-t border-outline-variant flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline font-mono">PUB: ED-2025-Q4</span>
+<a class="text-primary font-semibold hover:text-secondary transition-colors inline-flex items-center gap-0.5" href="#">
+                Inspect <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</article>
+<!-- DOCUMENT 4: Funding Contract Amendment (Official memo format with formal seal stamp) -->
+<article class="bg-surface border border-outline-variant rounded paper-shadow paper-lift flex flex-col justify-between overflow-hidden relative group">
+<!-- Official Memo Header Accent -->
+<div class="h-1 bg-secondary w-full"></div>
+<div class="p-5 flex-1 flex flex-col">
+<!-- Header meta & seal -->
+<div class="flex items-start justify-between">
+<span class="text-label-sm font-label-sm uppercase tracking-widest text-secondary font-bold">Addendum / 04</span>
+<span class="text-label-sm font-label-sm bg-[#F9EBE6] text-[#C85A32] px-2 py-0.5 rounded font-medium">
+                Active Amendment
+              </span>
+</div>
+<!-- Title & Subtitle -->
+<div class="mt-4 pb-3 border-b border-outline-variant">
+<h3 class="font-headline-sm text-headline-sm text-primary leading-snug">
+                CONTRACT AMENDMENT
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Addendum A: Reallocation Authorization
+              </p>
+</div>
+<!-- Archival Metadata -->
+<div class="py-3 flex items-center gap-3 text-label-sm font-label-sm text-outline border-b border-outline-variant">
+<span>2025</span>
+<span>·</span>
+<span>6 pages</span>
+<span>·</span>
+<span>Sign-off: Nov 14</span>
+</div>
+<!-- Mini Note & Official Seal Visual -->
+<div class="mt-4 flex-1 flex flex-col justify-between">
+<div>
+<span class="text-label-sm font-label-sm uppercase tracking-wider text-outline block mb-1.5">Executive Scope</span>
+<p class="text-body-sm font-body-sm text-on-surface leading-relaxed">
+                  Extends travel &amp; supply budget flexibility up to $45,000 across Latin America project cohorts.
+                </p>
+</div>
+<!-- Archival Ink Seal Representation -->
+<div class="mt-3 p-2 bg-surface-container border border-dashed border-outline-variant rounded flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">verified</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase paper-stamp">
+                  Verified Legal Ratification
+                </span>
+</div>
+</div>
+<!-- Card Bottom Sheet Stamp -->
+<div class="mt-6 pt-3 border-t border-outline-variant flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline font-mono">AUTH: AMEND-01</span>
+<a class="text-primary font-semibold hover:text-secondary transition-colors inline-flex items-center gap-0.5" href="#">
+                Inspect <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- 4. Simple Drag-and-Drop Archival Dropzone -->
+<section class="mt-12">
+<div class="border-2 border-dashed border-outline-variant hover:border-primary-container bg-surface-container-lowest/50 hover:bg-surface-container-lowest transition-colors rounded p-8 text-center cursor-pointer group">
+<div class="max-w-md mx-auto flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary mb-3 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[24px]">upload_file</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-primary mb-1">
+            Drop PDF, DOCX or agreements here
+          </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Drop grant agreements or donor guidelines here · OCR and provenance indexing are automatic
+          </p>
+<div class="mt-4 flex items-center gap-3">
+<span class="text-label-sm font-label-sm text-outline">Supported: PDF/A, DOCX, Scanned TIFF</span>
+<span class="text-outline">·</span>
+<span class="text-label-sm font-label-sm text-primary font-semibold hover:underline">Browse file system</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Archival Integrity Footer Note -->
+<footer class="mt-12 pt-6 border-t border-outline-variant flex flex-col sm:flex-row items-center justify-between text-label-sm font-label-sm text-outline gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span>FOLIO Institutional Vault · Cryptographic hashing active on all 4 Helios agreements</span>
+</div>
+<div class="flex items-center gap-6">
+<a class="hover:text-primary transition-colors" href="#">Export Citation Ledger</a>
+<a class="hover:text-primary transition-colors" href="#">Audit Trail</a>
+<a class="hover:text-primary transition-colors" href="#">Repository Settings</a>
+</div>
+</footer>
+</main>
+<script>
+    // Lightweight interaction for clearing or searching clauses
+    const searchInput = document.querySelector('input[type="text"]');
+    if (searchInput) {
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.activeElement === searchInput) {
+          searchInput.value = '';
+          searchInput.blur();
+        }
+      });
+    }
+  </script>
+</body></html>

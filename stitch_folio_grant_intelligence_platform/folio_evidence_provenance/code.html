@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FOLIO — Visual Evidence &amp; Provenance</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#fe875d",
+            "surface-dim": "#dbdad5",
+            "on-primary-container": "#85a291",
+            "tertiary-fixed-dim": "#cac6bd",
+            "on-primary-fixed": "#052015",
+            "surface": "#fbf9f4",
+            "surface-container-highest": "#e4e2de",
+            "tertiary-fixed": "#e6e2d8",
+            "on-secondary-fixed": "#390c00",
+            "primary": "#082217",
+            "surface-variant": "#e4e2de",
+            "error": "#ba1a1a",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed": "#1c1c16",
+            "tertiary": "#1f1e18",
+            "secondary": "#a0401c",
+            "on-tertiary-container": "#9e9b92",
+            "on-secondary-container": "#722200",
+            "on-secondary-fixed-variant": "#802a05",
+            "on-error": "#ffffff",
+            "outline": "#727973",
+            "tertiary-container": "#34332c",
+            "inverse-on-surface": "#f2f1ec",
+            "secondary-fixed-dim": "#ffb59c",
+            "on-tertiary": "#ffffff",
+            "primary-fixed": "#cbead7",
+            "secondary-fixed": "#ffdbcf",
+            "on-primary-fixed-variant": "#324c3e",
+            "on-surface": "#1b1c19",
+            "surface-tint": "#496455",
+            "inverse-surface": "#30312e",
+            "on-error-container": "#93000a",
+            "surface-bright": "#fbf9f4",
+            "background": "#fbf9f4",
+            "primary-container": "#1e382b",
+            "error-container": "#ffdad6",
+            "surface-container-high": "#e9e8e3",
+            "surface-container-low": "#f5f4ef",
+            "outline-variant": "#c2c8c2",
+            "on-secondary": "#ffffff",
+            "inverse-primary": "#b0cdbb",
+            "on-tertiary-fixed-variant": "#484740",
+            "on-primary": "#ffffff",
+            "on-surface-variant": "#424844",
+            "surface-container": "#efeee9",
+            "primary-fixed-dim": "#b0cdbb",
+            "on-background": "#1b1c19"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-lg": "2rem",
+            "margin-mobile": "1.25rem",
+            "space-sm": "0.75rem",
+            "gutter-mobile": "1rem",
+            "margin": "3rem",
+            "gutter": "1.5rem",
+            "space-xl": "3.5rem",
+            "space-xs": "0.375rem",
+            "space-md": "1.25rem"
+          },
+          "fontFamily": {
+            "metric-numeral": ["Newsreader", "serif"],
+            "label-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg-mobile": ["Newsreader", "serif"],
+            "headline-md": ["Newsreader", "serif"],
+            "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "display-lg-mobile": ["Newsreader", "serif"],
+            "headline-sm": ["Newsreader", "serif"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"],
+            "body-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg": ["Newsreader", "serif"],
+            "label-md": ["Plus Jakarta Sans", "sans-serif"],
+            "display-lg": ["Newsreader", "serif"]
+          },
+          "fontSize": {
+            "metric-numeral": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "headline-md": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.015em", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.005em", "fontWeight": "500" }],
+            "body-md": ["15px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "letterSpacing": "0.005em", "fontWeight": "400" }],
+            "headline-lg": ["38px", { "lineHeight": "46px", "letterSpacing": "-0.015em", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "display-lg": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
+    }
+    .paper-shadow {
+      box-shadow: 0 2px 8px -2px rgba(44, 45, 42, 0.04), 0 1px 3px 0 rgba(44, 45, 42, 0.02);
+    }
+    .archival-hairline {
+      border-color: #E4DFD3;
+    }
+    .ink-highlight-primary {
+      background-color: #f7eed7;
+      border-bottom: 1.5px solid #a0401c;
+      padding: 0.1rem 0.25rem;
+    }
+    .ink-highlight-secondary {
+      background-color: #e8efea;
+      border-bottom: 1.5px solid #1e382b;
+      padding: 0.1rem 0.25rem;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TOP APP BAR -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-gutter flex justify-between items-center h-16 w-full">
+<div class="flex items-center space-x-8">
+<a class="font-headline-md text-headline-md tracking-tight text-primary dark:text-inverse-primary font-normal" href="#">FOLIO</a>
+<nav class="hidden md:flex items-center space-x-6 pt-1">
+<a class="text-on-surface-variant dark:text-on-tertiary-container pb-1 hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150 font-label-md text-label-md" href="#">Research</a>
+<a class="text-primary dark:text-inverse-primary font-semibold border-b-2 border-secondary pb-1 font-label-md text-label-md" href="#">Evidence</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container pb-1 hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150 font-label-md text-label-md" href="#">Documents</a>
+</nav>
+</div>
+<div class="flex items-center space-x-3">
+<div class="hidden sm:inline-flex items-center space-x-2 px-3 py-1 rounded bg-surface-container border border-outline-variant text-primary font-label-md text-label-md">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span>Helios Foundation 2025–26 Grants</span>
+</div>
+<button class="flex items-center space-x-1.5 px-2.5 py-1 text-on-surface-variant hover:text-primary border border-outline-variant rounded font-label-md text-label-md transition-colors duration-150">
+<span class="material-symbols-outlined text-base">search</span>
+<span class="tracking-wide">⌘K Search</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-150 p-1 rounded">
+<span class="material-symbols-outlined text-xl" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- MAIN CANVAS -->
+<main class="flex-1 max-w-7xl w-full mx-auto px-gutter py-8 md:py-12 space-y-12">
+<!-- 1. EDITORIAL HEADER -->
+<section class="border-b archival-hairline pb-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="space-y-2">
+<div class="flex items-center space-x-2">
+<span class="font-label-sm text-label-sm text-secondary tracking-widest uppercase">Verified Provenance Audit</span>
+<span class="text-outline-variant">/</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant tracking-wider">REF #EV-2025-419</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Where it came from</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Visual provenance, strict legal citations, and verified contract clauses.</p>
+</div>
+<div class="bg-surface-container-low border archival-hairline p-3.5 rounded max-w-md w-full">
+<div class="flex items-start space-x-2.5">
+<span class="material-symbols-outlined text-secondary text-lg mt-0.5">help_center</span>
+<div>
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant block">Primary Synthesis Inquiry</span>
+<p class="font-headline-sm text-headline-sm text-primary text-base leading-snug">"What are the mandatory reporting deadlines &amp; disbursement conditions?"</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. VISUAL RELATIONSHIP DIAGRAM (TREE / PROVENANCE FLOW) -->
+<section class="bg-surface-container-low border archival-hairline rounded-lg p-6 md:p-8">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 pb-4 border-b archival-hairline gap-2">
+<div>
+<span class="font-label-sm text-label-sm tracking-widest text-on-surface-variant uppercase">Lineage Mapping</span>
+<h2 class="font-headline-sm text-headline-sm text-primary">Authority &amp; Citation Branch</h2>
+</div>
+<div class="flex items-center space-x-2 text-primary font-label-md text-label-md bg-surface-container px-3 py-1 rounded border archival-hairline">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span>100% Deterministic Lineage</span>
+</div>
+</div>
+<!-- Tree Diagram Structure -->
+<div class="flex flex-col items-center max-w-3xl mx-auto py-3">
+<!-- Root Node: Synthesis Answer -->
+<div class="w-full max-w-lg bg-surface-container-lowest border-2 border-primary-container rounded p-4 text-center paper-shadow">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest block mb-1">Synthesized Answer Statement</span>
+<p class="font-headline-sm text-headline-sm text-primary font-semibold">
+            Quarterly within 30 days · Annual at year-end
+          </p>
+<div class="mt-2 flex items-center justify-center space-x-3 text-on-surface-variant font-label-sm text-label-sm">
+<span>2 Authoritative Records</span>
+<span>·</span>
+<span>Zero Extrapolations</span>
+</div>
+</div>
+<!-- Trunk Line -->
+<div class="w-px h-8 bg-outline-variant"></div>
+<!-- Split Junction -->
+<div class="relative w-full max-w-xl">
+<!-- Horizontal connector line -->
+<div class="absolute top-0 left-1/4 right-1/4 h-px bg-outline-variant"></div>
+<!-- Left & Right Vertical drops -->
+<div class="flex justify-around w-full">
+<div class="flex flex-col items-center">
+<div class="w-px h-6 bg-outline-variant"></div>
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-px h-6 bg-outline-variant"></div>
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+</div>
+</div>
+</div>
+<!-- Level 2: Primary Parent Sources -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-2xl mt-2">
+<!-- Branch A Source -->
+<div class="flex flex-col items-center">
+<div class="w-full bg-surface-container-lowest border archival-hairline rounded p-3 text-center paper-shadow">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest block">Primary Regulatory Framework</span>
+<p class="font-headline-sm text-headline-sm text-primary mt-0.5">GRANT GUIDELINES</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Helios Operational Directives 2025–26</p>
+</div>
+<div class="w-px h-6 bg-outline-variant"></div>
+<div class="w-1.5 h-1.5 bg-primary-container rounded-sm"></div>
+<div class="w-px h-4 bg-outline-variant"></div>
+<div class="px-3 py-1 rounded bg-surface border archival-hairline font-label-md text-label-md text-primary mt-1">
+              § 5.1 · Page 8
+            </div>
+</div>
+<!-- Branch B Source -->
+<div class="flex flex-col items-center">
+<div class="w-full bg-surface-container-lowest border archival-hairline rounded p-3 text-center paper-shadow">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest block">Binding Grantee Instrument</span>
+<p class="font-headline-sm text-headline-sm text-primary mt-0.5">DONOR AGREEMENT</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Bilateral Compact #H-882 (Nov 2024)</p>
+</div>
+<div class="w-px h-6 bg-outline-variant"></div>
+<div class="w-1.5 h-1.5 bg-secondary rounded-sm"></div>
+<div class="w-px h-4 bg-outline-variant"></div>
+<div class="px-3 py-1 rounded bg-surface border archival-hairline font-label-md text-label-md text-secondary mt-1">
+              § 7.2 · Page 14
+            </div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. DOCUMENT EVIDENCE SECTION (Realistic Physical Page Sheets) -->
+<section class="space-y-4">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Unadulterated Material Records</span>
+<h2 class="font-headline-md text-headline-md text-primary">Original Physical Text Excerpts</h2>
+</div>
+<div class="flex items-center space-x-2 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm text-primary">verified</span>
+<span>Cryptographic Hash Confirmed (SHA-256)</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+<!-- Document Sheet A -->
+<div class="bg-surface-container-lowest border archival-hairline rounded p-6 md:p-8 paper-shadow flex flex-col justify-between relative overflow-hidden">
+<!-- Page Deckle Top accent -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-primary-container"></div>
+<div>
+<div class="flex justify-between items-start border-b archival-hairline pb-4 mb-6">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Archival Ledger 2025.1</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-1">Helios Foundation Grant Guidelines (2025–2026)</h3>
+</div>
+<div class="text-right flex flex-col items-end space-y-1">
+<span class="px-2.5 py-0.5 rounded text-xs font-label-md text-label-md bg-surface-container text-primary border archival-hairline">
+                  § 5.1 · p. 8
+                </span>
+<span class="inline-flex items-center text-xs font-label-sm text-label-sm text-primary space-x-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span>Verified Active</span>
+</span>
+</div>
+</div>
+<!-- Authentic Printed Typography Paper Surface -->
+<div class="space-y-4 font-serif text-on-surface leading-relaxed text-sm md:text-base bg-surface-bright/40 p-4 border archival-hairline rounded">
+<p class="font-headline-sm text-headline-sm text-primary text-xs uppercase tracking-widest border-b archival-hairline pb-1">
+                SECTION 5. REPORTING SCHEDULE AND DISBURSEMENT CONDITIONS
+              </p>
+<p class="text-xs text-on-surface-variant font-mono">5.1 Quarterly Financial Filings.</p>
+<p class="text-justify leading-relaxed">
+                The Grantee shall submit quarterly expenditure reports, prepared according to GAAP standards and attested by an authorized financial controller.
+                <mark class="ink-highlight-primary font-medium text-primary">
+                  Quarterly financial reports must be submitted within 30 DAYS following the close of each calendar quarter.
+                </mark>
+                Failure to lodge within this designated timeframe triggers automatic payment withholding until reconciliation is satisfied by the board.
+              </p>
+<p class="text-xs text-on-surface-variant italic pt-2">
+                "Submissions received past day 30 will undergo secondary compliance assessment before upcoming disbursement tranches are approved."
+              </p>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t archival-hairline flex justify-between items-center text-xs font-label-sm text-label-sm text-on-surface-variant">
+<span>Doc ID: HL-GDL-2025-V4</span>
+<button class="text-primary hover:text-secondary underline underline-offset-4 flex items-center space-x-1">
+<span>View full scan</span>
+<span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Document Sheet B -->
+<div class="bg-surface-container-lowest border archival-hairline rounded p-6 md:p-8 paper-shadow flex flex-col justify-between relative overflow-hidden">
+<!-- Page Deckle Top accent -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-secondary"></div>
+<div>
+<div class="flex justify-between items-start border-b archival-hairline pb-4 mb-6">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Counterpart Execution Record</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-1">Bilateral Donor Agreement #H-882</h3>
+</div>
+<div class="text-right flex flex-col items-end space-y-1">
+<span class="px-2.5 py-0.5 rounded text-xs font-label-md text-label-md bg-secondary-fixed/50 text-on-secondary-fixed-variant border border-secondary-fixed">
+                  § 7.2 · p. 14
+                </span>
+<span class="inline-flex items-center text-xs font-label-sm text-label-sm text-on-surface-variant space-x-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Signed Nov 2024</span>
+</span>
+</div>
+</div>
+<!-- Authentic Printed Typography Paper Surface -->
+<div class="space-y-4 font-serif text-on-surface leading-relaxed text-sm md:text-base bg-surface-bright/40 p-4 border archival-hairline rounded">
+<p class="font-headline-sm text-headline-sm text-primary text-xs uppercase tracking-widest border-b archival-hairline pb-1">
+                ARTICLE 7. ANNUAL IMPACT REPORTING &amp; EVALUATION
+              </p>
+<p class="text-xs text-on-surface-variant font-mono">7.2 Closeout Narrative.</p>
+<p class="text-justify leading-relaxed">
+                In addition to routine periodic ledgers,
+                <mark class="ink-highlight-secondary font-medium text-primary">
+                  an annual impact report is required at the end of the funding period,
+                </mark>
+                documenting qualitative outcomes, beneficiary counts, and audited metrics. The annual packet shall be accompanied by an independent auditor's commentary.
+              </p>
+<p class="text-xs text-on-surface-variant italic pt-2">
+                "No subsequent multi-year tranches will execute prior to committee approval of the Year-End Summary Narrative."
+              </p>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t archival-hairline flex justify-between items-center text-xs font-label-sm text-label-sm text-on-surface-variant">
+<span>Signature: E. Vance, Exec. VP (Executed 18 Nov 2024)</span>
+<button class="text-primary hover:text-secondary underline underline-offset-4 flex items-center space-x-1">
+<span>View full scan</span>
+<span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. INTERACTIVE COMPARE TOOL ("If two documents conflict") -->
+<section class="bg-surface-container-low border archival-hairline rounded-lg p-6 md:p-8 space-y-6">
+<div class="flex flex-col md:flex-row justify-between md:items-center pb-4 border-b archival-hairline gap-3">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Cross-Instrument Verification</span>
+<h2 class="font-headline-sm text-headline-sm text-primary">Provisional Reconciler &amp; Conflict Check</h2>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<div class="flex items-center space-x-1.5 px-3 py-1 bg-surface-container rounded border archival-hairline text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-secondary text-sm">info</span>
+<span>Conflict check: No direct contradiction found (1 variance note)</span>
+</div>
+<button class="px-3 py-1 bg-surface-container-lowest border archival-hairline text-primary rounded font-label-md text-label-md hover:border-primary transition-colors flex items-center space-x-1" id="diffToggleBtn">
+<span class="material-symbols-outlined text-sm">tune</span>
+<span id="diffLabel">Side-by-side Diff</span>
+</button>
+</div>
+</div>
+<!-- Comparison Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Guidelines Column -->
+<div class="space-y-4">
+<div class="flex items-center justify-between pb-2 border-b archival-hairline">
+<span class="font-label-md text-label-md text-primary font-semibold">GRANT GUIDELINES (Active)</span>
+<span class="text-xs font-mono text-on-surface-variant">Current 2025–26 Cycle</span>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-lowest p-4 rounded border archival-hairline paper-shadow">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Quarterly Lodging Window</span>
+<div class="mt-1 flex items-baseline justify-between">
+<div class="font-metric-numeral text-metric-numeral text-primary">30 DAYS</div>
+<span class="text-xs font-label-md text-label-md text-primary px-2 py-0.5 rounded bg-primary-fixed/40">Strict Cutoff</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Section 5.1 designates calendar day 30 as absolute disbursement freeze limit.</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded border archival-hairline paper-shadow">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Line Item Variance Allowance</span>
+<div class="mt-1 flex items-baseline justify-between">
+<div class="font-metric-numeral text-metric-numeral text-primary">10% CAP</div>
+<span class="text-xs font-label-md text-label-md text-on-surface-variant px-2 py-0.5 rounded bg-surface-container">Standard Policy</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Budget shifts exceeding 10% between categories require prior written consent.</p>
+</div>
+</div>
+</div>
+<!-- Agreement / Historical Column -->
+<div class="space-y-4">
+<div class="flex items-center justify-between pb-2 border-b archival-hairline">
+<span class="font-label-md text-label-md text-secondary font-semibold">DONOR AGREEMENT / HISTORICAL</span>
+<span class="text-xs font-mono text-secondary">Historical Precedent</span>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-lowest p-4 rounded border archival-hairline paper-shadow">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Previous 2023–24 Rule</span>
+<div class="mt-1 flex items-baseline justify-between">
+<div class="font-metric-numeral text-metric-numeral text-on-surface-variant line-through opacity-70">45 DAYS</div>
+<span class="text-xs font-label-md text-label-md text-secondary px-2 py-0.5 rounded bg-secondary-fixed/40">Superseded</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Contract #H-882 confirms adherence to newly reduced 30-day timeline for 2025.</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded border archival-hairline paper-shadow">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Allowable Variance Exception</span>
+<div class="mt-1 flex items-baseline justify-between">
+<div class="font-metric-numeral text-metric-numeral text-secondary">15% MAX</div>
+<span class="text-xs font-label-md text-label-md text-secondary px-2 py-0.5 rounded bg-secondary-fixed/40">If Notified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Article 8.3 permits up to 15% shift strictly if written notice is filed within 5 days.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Diff Comparison Drawer (Interactive inline element) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-4 text-xs font-mono space-y-2" id="diffDrawer">
+<div class="flex justify-between items-center text-on-surface-variant border-b archival-hairline pb-2 font-label-sm text-label-sm">
+<span>STRUCTURAL CLAUSE DELTA CHECK</span>
+<span class="text-primary font-semibold">Variance Classification: Minor / Reconciled</span>
+</div>
+<div class="space-y-1.5 pt-1">
+<div class="flex items-start space-x-2 text-error">
+<span>- [2023 Baseline §4.8]:</span>
+<span>Reports receivable within forty-five (45) consecutive calendar days post-quarter.</span>
+</div>
+<div class="flex items-start space-x-2 text-primary">
+<span>+ [2025 Active §5.1]:</span>
+<span>Reports receivable within thirty (30) consecutive calendar days post-quarter.</span>
+</div>
+<div class="flex items-start space-x-2 text-secondary pt-1">
+<span>~ [Reconciliation Note]:</span>
+<span>Agreement #H-882 Annex B executes 30-day requirement; 45-day window is void.</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. BOTTOM ACTION BAR -->
+<footer class="pt-6 border-t archival-hairline flex flex-col sm:flex-row justify-between items-center gap-4">
+<a class="inline-flex items-center space-x-2 text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-base">arrow_back</span>
+<span>Back to Research</span>
+</a>
+<div class="flex items-center space-x-4">
+<button class="px-4 py-2 bg-surface border archival-hairline text-on-surface rounded font-label-md text-label-md hover:bg-surface-container hover:border-primary transition-colors">
+          Export Audit Dossier (.PDF)
+        </button>
+<a class="px-5 py-2 bg-primary-container text-on-primary rounded font-label-md text-label-md hover:bg-primary transition-colors inline-flex items-center space-x-2" href="#">
+<span>Open in Document Archive</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</div>
+</footer>
+</main>
+<script>
+    // Lightweight toggle for the Diff comparison widget
+    const diffBtn = document.getElementById('diffToggleBtn');
+    const diffDrawer = document.getElementById('diffDrawer');
+    const diffLabel = document.getElementById('diffLabel');
+
+    if (diffBtn && diffDrawer) {
+      diffBtn.addEventListener('click', () => {
+        if (diffDrawer.classList.contains('hidden')) {
+          diffDrawer.classList.remove('hidden');
+          diffLabel.textContent = 'Hide Diff Drawer';
+        } else {
+          diffDrawer.classList.add('hidden');
+          diffLabel.textContent = 'Side-by-side Diff';
+        }
+      });
+    }
+  </script>
+</body></html>
