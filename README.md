@@ -1,382 +1,145 @@
-# S67_0926_Team4_Non_Profit_Organization
+# FOLIO — Grant Intelligence Platform
 
-# FOLIO — Nonprofit Grant Intelligence & Funder Query Assistant
-
-> An AI-powered RAG application that helps nonprofit teams quickly find, understand, and verify information across grant guidelines, donor agreements, impact reports, policy documents, and organizational data.
+An institutional, editorial intelligence platform designed for foundation officers, institutional grantmakers, and nonprofit program staff to query complex grant guidelines, donor agreements, and impact reports with 100% deterministic provenance and zero-extrapolation citations.
 
 ---
 
-## 📌 Overview
+## Visual & Product Design System
 
-Nonprofit organizations manage large collections of grant guidelines, donor agreements, impact reports, policy documents, transaction records, and other organizational information.
-
-Relevant information can be scattered across multiple documents and data sources, making it difficult for staff to quickly find the information they need.
-
-**FOLIO** uses Retrieval-Augmented Generation (RAG) to retrieve relevant information from the organization's knowledge base and provide grounded answers with source citations.
-
-The system is designed to reduce the time spent manually searching through documents while maintaining traceability between answers and their original sources.
+Folio embodies the **Quiet Editorial** design aesthetic:
+- **Tone:** Measured, institutional, transparent, and quietly confident.
+- **Typography:** Juxtaposition between authoritative literary serif (`Newsreader`) and crisp humanist sans (`Plus Jakarta Sans`).
+- **Color Palette:** Layered ivory paper canvas (`#FDFBF7` / `#FBF9F4`), soft cream document sheets (`#F7F4EE`), deep mineral charcoal ink (`#1C1D1B`), botanical forest green (`#1E382B`), and archival terracotta accents (`#D96B43` / `#A0401C`).
+- **Tactile Paper Tiers:** Physical sheet layering with hairline borders (`#E4DFD3`, `#DDD7CA`) and deckle accents rather than synthetic glassmorphism or neon gradients.
 
 ---
 
-## 🎯 Problem Statement
+## Core Pages & Features
 
-A nonprofit organization holds grant guidelines, donor agreements, and impact reports, but program staff cannot quickly answer funder questions because the relevant clauses are scattered across many documents.
+### 1. Research / Instant Answer (`Research`)
+- **Query Input & Suggestions:** Fast query bar with interactive suggestion chips (`Reporting deadlines`, `Indirect costs`, `Annual report due`, `Reallocation limits`, `Financial audit / GAAP`).
+- **Answer State Block:**
+  - Verified query metadata recap (`Asked: "..." · 2 sources verified`) with `PORTAL VERIFIED SPECIFICATION` badge.
+  - Editorial headline and concise grounded prose.
+  - **Visual Communication Grid:** 3 expressive metric blocks (e.g. `30 DAYS` deadline, `YEAR END` annual report, `10% CAP` indirect cost variance).
+  - **Sources Mini-Sheets:** Paper-like cited agreements with clause badges and direct inspect actions.
+  - **Primary CTA:** "View evidence →" deep linking into the Provenance view.
 
-### Key Challenges
+### 2. Visual Evidence & Provenance (`Evidence`)
+- **Verified Provenance Audit:** Header with unique inquiry tracking (`REF #EV-2025-419`).
+- **Authority & Citation Branch (Lineage Tree):** 100% deterministic lineage mapping from synthesized answer statement down through parent regulatory frameworks and binding grantee instruments.
+- **Original Physical Text Excerpts:** Authentic printed typography paper sheets with colored deckle accent bars, SHA-256 integrity verification, section headers, and highlighted `<mark>` clauses.
+- **Provisional Reconciler & Conflict Check:** Cross-instrument side-by-side metric comparison (e.g. Active 2025 vs Historical 2023) and collapsible structural clause delta check diff drawer.
+- **Downloadable Audit Dossier:** Export verified provenance audit reports.
 
-- Information is distributed across multiple documents and data sources.
-- Documents can be long and difficult to search manually.
-- Relevant information may use different terminology.
-- Staff need answers that can be traced back to the original source.
-- Organizational data must be validated before processing.
-- AI-generated answers must be grounded in available evidence.
-- Updated documents need to be detected and reflected in the knowledge base.
-
----
-
-## 💡 Solution
-
-FOLIO uses **Retrieval-Augmented Generation (RAG)** to connect an LLM with the organization's document and data knowledge base.
-
-The system:
-
-1. Ingests organizational documents and structured data.
-2. Validates incoming data against defined schemas.
-3. Extracts and cleans document text.
-4. Detects duplicate documents and records.
-5. Splits documents into meaningful chunks.
-6. Generates vector embeddings for document chunks.
-7. Stores embeddings in Pinecone.
-8. Stores structured metadata and records in SQL.
-9. Retrieves the most relevant information for user questions.
-10. Applies metadata filters such as document type, date, version, and access level.
-11. Provides retrieved evidence to the LLM as context.
-12. Generates a grounded answer based on the retrieved information.
-13. Provides source citations for verification.
-14. Returns a clear "no information found" response when the available evidence does not support an answer.
+### 3. Documents / Digital Paper Archive (`Documents`)
+- **Fast Clause Search & Excerpts Drawer:** Live clause scanner highlighting matching keywords (e.g. `indirect costs`) with direct "Open in sheet →" navigation.
+- **Archival Shelf Dossier Cards:** Asymmetrical grid displaying spine bookmark bands, status seals (`Active`, `Fully Executed`, `Approved`, `Active Amendment`), key indexed clauses, obligation matrices, milestone ledgers, and executive scopes.
+- **Full Document Dossier Reader:** Clean reading experience displaying full unadulterated charter text, effective cycle, page count, and SHA-256 checksums.
+- **Drag-and-Drop Archival Dropzone:** Multi-step upload simulation (`Uploading...` → `Extracting text (OCR)...` → `Creating semantic chunks...` → `Generating hashes...` → `Indexed successfully`) with immediate archive integration.
 
 ---
 
-## ✨ Key Features
+## Project Structure
 
-### 🔎 Natural Language Information Retrieval
-
-Users can ask questions in natural language instead of manually searching through multiple organizational documents.
-
-### 🧠 Semantic Search
-
-Document chunks and user queries are represented using vector embeddings, allowing the system to retrieve semantically relevant information.
-
-### 📚 Source Citations & Provenance
-
-Answers include source information such as:
-
-- Document name
-- Section or page
-- Version
-- Date
-
-This allows users to trace answers back to the original information.
-
-### 🔍 Metadata-Based Retrieval
-
-Retrieval can be filtered using document metadata such as:
-
-- Document type
-- Date
-- Version
-- Access level
-
-### 💬 Conversational Question Answering
-
-The system supports natural-language interaction so users can ask questions and follow-up questions about organizational information.
-
-### 🛡️ Grounded Answers
-
-The system is designed to generate answers only from retrieved evidence and return a **"no information found"** response when sufficient supporting information is unavailable.
-
-### 📄 Document & Data Ingestion
-
-The system supports organizational documents and structured data including:
-
-- Grant guidelines
-- Donor agreements
-- Impact reports
-- Policy documents
-- Transaction and donation records
-- Backend pipeline metrics
-- Deployment history
-- Team ownership data
-
----
-
-## 🏗️ How It Works
-
-### Document & Data Ingestion
-
-```text
-Documents / Structured Data
-            ↓
-       Data Ingestion
-            ↓
-      Schema Validation
-            ↓
-   Text Extraction & Cleaning
-            ↓
-      Duplicate Detection
-            ↓
-          Chunking
-            ↓
-       Metadata Creation
-            ↓
-       Embedding Generation
-            ↓
-      ┌──────────────────┐
-      │                  │
-      ▼                  ▼
-     SQL             Pinecone
-      │                  │
-      └────────┬─────────┘
-               ↓
-        Knowledge Base
 ```
-
-Question Answering
-```
-User
-  ↓
-Streamlit Application
-  ↓
-Natural-Language Question
-  ↓
-Query Processing
-  ↓
-Pinecone Retrieval
-  ↓
-Metadata Filtering
-  ↓
-Relevant Evidence
-  ↓
-Context Construction
-  ↓
-LLM / RAG
-  ↓
-Grounding Check
-  ↓
-Answer + Source Citations
-```
-
-### 🗄️ Data Layer
-
-Component	Purpose
-SQL	Structured document metadata, transaction records, and processing logs
-Pinecone	Vector embeddings, semantic search, and Top-K retrieval
-File-based document storage	Input documents used for ingestion and processing
-
-The PRD specifies SQL as the structured data layer and Pinecone as the vector database.
-
-### 📊 Data Sources
-
-FOLIO is designed to work with multiple organizational data sources.
-
-Data Source	Example Information
-Documents	Grant guidelines, donor agreements, impact reports, policies
-Transactions	Donations and transaction records
-Backend Metrics	CPU utilization, memory, storage, requests handled
-Deployment History	Deployment ID, service, version, deployment time
-Team Ownership	Service, team, cost center
-
-All incoming data is expected to pass schema validation and preprocessing before being used by the system.
-
-### 🛠️ Tech Stack
-
-- Core Development
-- Python
-- NumPy
-- Scikit-learn
-- AI / RAG
-- Large Language Model
-- Embedding Model / API
-- Retrieval-Augmented Generation
-- Vector Embeddings
-
-Data & Retrieval
-- Pinecone — Vector database and semantic retrieval
-- SQL — Structured data and metadata storage
-- Document Processing
-- Py2Pdf — PDF document processing
-
-Application
-- Streamlit — User interface and application layer
-
-### 🔄 RAG Pipeline
-
-FOLIO follows a Retrieval-Augmented Generation architecture:
-
-User Question
-      ↓
-Query Representation
-      ↓
-Vector Retrieval
-      ↓
-Top-K Relevant Chunks
-      ↓
-Metadata Filtering
-      ↓
-Retrieved Evidence
-      ↓
-Context Assembly
-      ↓
-LLM
-      ↓
-Grounded Answer
-      ↓
-Source Citation
-
-The LLM receives retrieved organizational information as context so that responses can be grounded in the available knowledge base.
-
-📁 Project Structure
-
-```text
-FOLIO/
-├── src/
-│   ├── ingestion/
-│   ├── processing/
-│   ├── embeddings/
-│   ├── retrieval/
-│   ├── database/
-│   └── rag/
-│
+Sprint 2/
+├── .streamlit/
+│   └── config.toml               # Streamlit server & theme configuration
+├── app.py                        # Main application entrypoint & page router
+├── config/
+│   └── settings.py               # Global settings, feature flags, and API URLs
+├── styles/
+│   └── theme.css                 # Quiet Editorial CSS tokens & component overrides
 ├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── sample/
-│
-├── tests/
-├── docs/
-├── app/
-├── requirements.txt
-├── .env.example
-└── README.md
+│   ├── mock_documents.py         # 8+ rich grant guidelines, agreements, and reports
+│   ├── mock_queries.py           # 8+ realistic queries with metrics and citations
+│   └── mock_evidence.py          # Lineage trees, excerpt sheets, and diff records
+├── services/
+│   ├── base.py                   # Service abstract base interfaces
+│   ├── rag_service.py            # RAG question answering & suggestion engine
+│   ├── document_service.py       # Archive management, clause search & upload
+│   └── evidence_service.py       # Provenance retrieval & audit export
+├── utils/
+│   ├── constants.py              # Navigation tabs and classification types
+│   ├── formatting.py             # Text highlighters, currency & page formatters
+│   └── state.py                  # Streamlit session state manager
+├── components/
+│   ├── header.py                 # Sticky top navigation bar & workspace pill
+│   ├── query_box.py              # Search bar and suggested question chips
+│   ├── answer_card.py            # Grounded answer block, metrics & source cards
+│   ├── citation_card.py          # Paper-like mini sheet citation card
+│   ├── provenance_chain.py       # Deterministic lineage tree diagram
+│   ├── evidence_card.py          # Physical document excerpt sheet with deckle accent
+│   ├── document_card.py          # Archival shelf dossier card with spine bookmark
+│   ├── clause_search.py          # Live clause search matching drawer
+│   ├── diff_viewer.py            # Provisional reconciler & diff comparison drawer
+│   ├── upload_panel.py           # Multi-step upload & indexing workflow
+│   └── document_viewer.py        # Full document dossier reading canvas
+├── views/
+│   ├── research_view.py          # Page 1: Research / Instant Answer
+│   ├── evidence_view.py          # Page 2: Visual Evidence & Provenance
+│   └── documents_view.py         # Page 3: Documents / Digital Archive
+├── requirements.txt              # Project dependencies
+├── .env.example                  # Environment configuration template
+└── README.md                     # Documentation & demo guide
 ```
 
-### 👥 Team Responsibilities
+---
 
+## Installation & Running Locally
 
-#### Data Engineering & Retrieval
+### 1. Prerequisites
+- Python 3.10+
+- Streamlit 1.35+
 
-- Data schema design and validation
-- Data cleaning and preprocessing
-- Document metadata management
-- Transaction and organizational data processing
-- Document chunking
-- Checksum-based duplicate detection
-- Document version/change detection
-- Embedding generation
-- Pinecone vector indexing
-- Metadata-based retrieval
-- SQL data storage
-- Processing and pipeline logs
-- Data quality validation
-- Knowledge-base refresh and maintenance
+### 2. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
-#### RAG & AI
+### 3. Run the Application
+```bash
+streamlit run app.py
+```
 
-- RAG pipeline design
-- Query processing
-- Context construction
-- Prompt construction
-- LLM integration
-- Grounded answer generation
-- Source citation and attribution
-- Hallucination and refusal handling
-- Sensitive-information guardrails
-- RAG evaluation and answer quality
+The application will open in your browser at `http://localhost:8501`.
 
-#### Application & Integration
+---
 
-- Streamlit application
-- Chat interface
-- Document management interface
-- Retrieval integration
-- Metadata and date-range filters
-- Citation and source presentation
-- Monitoring interface
-- Application integration and delivery
+## Complete Demo Flow Walkthrough
 
-#### 📈 Evaluation Targets
+1. **Launch Folio:** Open `http://localhost:8501`. Notice the Quiet Editorial typography, warm ivory paper canvas, and top navbar.
+2. **Execute a Query:** In the `Research` page, click on the suggestion chip `"Reporting deadlines"` (or type `"What are the reporting requirements?"`).
+3. **Inspect Grounded Answer:** View the synthesized answer with `PORTAL VERIFIED SPECIFICATION` seal, 3 metric blocks (`30 DAYS`, `YEAR END`, `10% CAP`), and 2 mini citation sheets.
+4. **Follow Provenance:** Click `"View evidence →"`. The app navigates to `Evidence`, rendering the **Authority & Citation Branch Lineage Tree** and physical document paper sheets with highlighted clauses.
+5. **Inspect Cross-Instrument Diff:** Click `"⚙ Side-by-side Diff"` in the Provisional Reconciler to view structural clause deltas between the 2023 baseline and 2025 active rule.
+6. **Export Audit Dossier:** Click `"Export Audit Dossier (.PDF)"` to download the verified audit trail.
+7. **Browse Digital Archive:** Click `"Open Document Archive →"` (or `"Documents"` in top nav) to view the archival shelf of executed agreements and guidelines.
+8. **Test Fast Clause Search:** In the search bar, type `indirect costs`. The instant matching drawer opens showing highlighted clauses from both Grant Guidelines and Donor Agreements.
+9. **Inspect Document Dossier:** Click `"Inspect →"` on *Grant Guidelines* to read the full document dossier and verify metadata.
+10. **Test Document Upload:** Click `"+ Add documents"` and upload a sample grant agreement file to watch the multi-step indexing simulation in real time.
 
-The project defines the following target metrics:
+---
 
-- Metric	Target
-- Answer Accuracy	≥ 90%
-- Retrieval Relevance — Recall@5	≥ 85%
-- Citation Coverage	100%
-- Pinecone Query Latency	< 1 second (p95)
-- End-to-End Response Time	< 10 seconds (p95)
-- Pipeline Test Coverage	≥ 80%
-- Data Schema Validation	100%
-- Vector Index Completeness	100%
+## How to Connect a Real RAG Backend
 
-The system also targets reliable handling of sensitive-information requests and data-quality issues.
+The frontend architecture strictly isolates UI components from backend logic through clean abstract service interfaces (`services/base.py`).
 
-### 🔐 Data Validation & Reliability
+To connect a real RAG backend:
+1. Create `services/real_rag_service.py` implementing `BaseRAGService`:
+   ```python
+   import requests
+   from services.base import BaseRAGService
+   from config.settings import settings
 
-FOLIO is designed to validate data before it enters the knowledge base.
-
-The ingestion pipeline includes:
-
-- Schema validation
-- Missing-field handling
-- Duplicate detection
-- Checksum-based document change detection
-- Malformed record logging
-- Document version tracking
-- Processing logs
-- Data quality checks
-
-Malformed or unreadable records should be isolated and logged rather than causing the entire ingestion pipeline to fail.
-
-### 🛡️ Security & Privacy
-
-The project is designed to handle organizational information responsibly.
-
-Development and evaluation use synthetic or anonymized data where appropriate.
-
-Sensitive configuration such as API keys should be stored through environment variables and should not be committed to the repository.
-
-The system is also designed to identify and flag sensitive-information requests according to the PRD's guardrail requirements.
-
-### 🚧 Project Status
-
-In Development
-
-FOLIO is being developed as an AI-powered nonprofit information retrieval system using Retrieval-Augmented Generation, semantic search, structured data storage, and source-based answer generation.
-
-### 🎓 Academic Context
-
-FOLIO is developed as part of an academic project focused on:
-
-- Large Language Model Applications
-- Retrieval-Augmented Generation
-- Document Processing
-- Text Chunking
-- Embeddings
-- Vector Databases
-- Semantic Search
-- Data Engineering
-- Structured Data Management
-- AI Evaluation
-- Streamlit Application Development
-
-
-### 📌 Project Goals
-
-FOLIO aims to provide nonprofit teams with:
-
-- Faster access to organizational information
-- Reliable retrieval from multiple documents
-- Grounded AI-generated answers
-- Source traceability and verification
-- Structured organizational data management
-- A reusable foundation for future AI-powered information systems
+   class RealRAGService(BaseRAGService):
+       def ask_question(self, query: str):
+           response = requests.post(
+               f"{settings.RAG_API_URL}/query",
+               headers={"Authorization": f"Bearer {settings.RAG_API_KEY}"},
+               json={"query": query}
+           )
+           return response.json()
+   ```
+2. Replace `rag_service = MockRAGService()` in `services/rag_service.py` with `rag_service = RealRAGService()`. No UI code needs to be modified.
