@@ -1,0 +1,675 @@
+/* ========================================================================= */
+/* FOLIO — QUIET EDITORIAL DESIGN SYSTEM                                    */
+/* Authentic Institutional Document Intelligence & Archival Aesthetic       */
+/* ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+
+:root {
+  /* Surfaces & Paper Stocks */
+  --folio-canvas: #FDFBF7;
+  --folio-surface: #FBF9F4;
+  --folio-surface-mid: #F7F4EE;
+  --folio-surface-recessed: #EFECE4;
+  --folio-surface-high: #E9E8E3;
+  --folio-surface-container: #EFEEE9;
+  --folio-surface-container-low: #F5F4EF;
+  --folio-paper-white: #FFFFFF;
+  
+  /* Borders & Dividers */
+  --folio-border-hairline: #E4DFD3;
+  --folio-border-divider: #DDD7CA;
+  --folio-border-outline: #727973;
+  --folio-border-outline-variant: #C2C8C2;
+  
+  /* Inks & Text Hierarchy */
+  --folio-ink-primary: #1B1C19;
+  --folio-ink-secondary: #424844;
+  --folio-ink-muted: #63625D;
+  --folio-ink-faint: #727973;
+  
+  /* Botanical Forest Green (Primary) */
+  --folio-primary: #082217;
+  --folio-primary-container: #1E382B;
+  --folio-primary-hover: #15291F;
+  --folio-primary-tint: #E8EFEA;
+  --folio-primary-fixed: #CBEAD7;
+  --folio-on-primary-fixed: #052015;
+  
+  /* Archival Terracotta (Accent / Warnings / Historical) */
+  --folio-terracotta: #D96B43;
+  --folio-terracotta-hover: #C85A32;
+  --folio-terracotta-wash: #F9EBE6;
+  --folio-terracotta-deep: #A0401C;
+  --folio-terracotta-fixed: #FFDBCF;
+  --folio-on-terracotta-fixed: #390C00;
+  
+  /* Typography Families */
+  --font-serif: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  
+  /* Paper Tactile Elevation */
+  --shadow-paper: 0 2px 8px -2px rgba(44, 45, 42, 0.05), 0 1px 3px 0 rgba(44, 45, 42, 0.03);
+  --shadow-paper-hover: 0 8px 20px -6px rgba(28, 29, 27, 0.08), 0 2px 6px -1px rgba(28, 29, 27, 0.04);
+}
+
+/* ========================================================================= */
+/* GLOBAL RESET & TYPOGRAPHY BUG FIX                                         */
+/* ========================================================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  hyphens: none !important;
+}
+
+html, body, [data-testid="stAppViewContainer"], .main {
+  background-color: var(--folio-surface) !important;
+  color: var(--folio-ink-primary) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0 !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Complete reset of Streamlit header & top margins */
+header,
+header[data-testid="stHeader"], 
+.stAppHeader,
+div[data-testid="stHeader"],
+#MainMenu, 
+footer, 
+[data-testid="stToolbar"], 
+[data-testid="stDecoration"],
+[data-testid="stStatusWidget"],
+[data-testid="stSidebarCollapseButton"] {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Force 0 top spacing on main layout containers */
+.main,
+.stMain,
+[data-testid="stAppViewContainer"],
+[data-testid="stMain"],
+[data-testid="stAppViewBlockContainer"],
+[data-testid="stMainBlockContainer"],
+.stMainBlockContainer,
+.block-container,
+.main .block-container,
+div[data-testid="block-container"] {
+  padding-top: 0.15rem !important;
+  margin-top: 0 !important;
+}
+
+/* Centered Editorial Max Width Application Container */
+.block-container,
+[data-testid="block-container"],
+.stMainBlockContainer,
+[data-testid="stMainBlockContainer"],
+[data-testid="stAppViewBlockContainer"],
+.main .block-container {
+  padding-top: 0.15rem !important;
+  padding-bottom: 2.5rem !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+  max-width: 1400px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Material Symbols Rendering */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined' !important;
+  font-weight: 300 !important;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap !important;
+  word-wrap: normal !important;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+}
+
+/* ========================================================================= */
+/* EDITORIAL TYPOGRAPHY CLASSES                                              */
+/* ========================================================================= */
+
+.folio-headline-display {
+  font-family: var(--font-serif);
+  font-size: 52px;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -0.02em;
+  color: var(--folio-primary);
+  margin: 0;
+}
+
+.folio-headline-lg {
+  font-family: var(--font-serif);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 46px;
+  letter-spacing: -0.015em;
+  color: var(--folio-primary);
+  margin: 0;
+}
+
+.folio-headline-md {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 34px;
+  letter-spacing: -0.01em;
+  color: var(--folio-primary);
+  margin: 0;
+}
+
+.folio-headline-sm {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.005em;
+  color: var(--folio-primary);
+  margin: 0;
+}
+
+.folio-body-lg {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: -0.005em;
+  color: var(--folio-ink-secondary);
+}
+
+.folio-body-md {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: var(--folio-ink-secondary);
+}
+
+.folio-body-sm {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.005em;
+  color: var(--folio-ink-muted);
+}
+
+.folio-label-md {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.05em;
+}
+
+.folio-label-sm {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.folio-metric-numeral {
+  font-family: var(--font-serif);
+  font-size: 46px;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: -0.02em;
+}
+
+/* ========================================================================= */
+/* TACTILE PAPER TIERS                                                       */
+/* ========================================================================= */
+
+.paper-tier-1 {
+  background-color: var(--folio-surface-mid);
+  border: 1px solid var(--folio-border-hairline);
+  border-radius: 6px;
+}
+
+.paper-tier-2 {
+  background-color: var(--folio-paper-white);
+  border: 1px solid var(--folio-border-hairline);
+  border-radius: 4px;
+  box-shadow: var(--shadow-paper);
+}
+
+.paper-lift {
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.18s ease;
+}
+
+.paper-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-paper-hover);
+  border-color: var(--folio-border-divider);
+}
+
+.archival-hairline {
+  border-color: var(--folio-border-hairline) !important;
+}
+
+/* Authentic Document Highlights */
+.ink-highlight-primary {
+  background-color: #F7EED7;
+  border-bottom: 1.5px solid var(--folio-terracotta-deep);
+  padding: 0.1rem 0.3rem;
+  font-weight: 500;
+  color: var(--folio-primary);
+  border-radius: 2px;
+}
+
+.ink-highlight-secondary {
+  background-color: #E8EFEA;
+  border-bottom: 1.5px solid var(--folio-primary-container);
+  padding: 0.1rem 0.3rem;
+  font-weight: 500;
+  color: var(--folio-primary);
+  border-radius: 2px;
+}
+
+/* ========================================================================= */
+/* GLOBAL HEADER & NAVIGATION BAR                                            */
+/* ========================================================================= */
+
+/* Header Container */
+.folio-header-container {
+  border-bottom: 1px solid var(--folio-border-hairline);
+  background-color: var(--folio-surface);
+  padding-bottom: 0.75rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.folio-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 1.5rem;
+}
+
+.folio-nav-cluster {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.folio-brand-wordmark {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--folio-primary);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap !important;
+}
+
+.folio-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Streamlit button overrides for navigation */
+.stButton > button {
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  font-family: var(--font-sans) !important;
+  border-radius: 4px !important;
+  transition: all 0.15s ease-in-out !important;
+}
+
+/* Navigation Tab Buttons in Header */
+div[data-testid="stHorizontalBlock"]:has(.folio-brand-wordmark) div[data-testid="stButton"] > button,
+button[data-testid*="top_nav_"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0.35rem 0.5rem !important;
+  margin: 0 !important;
+  font-family: var(--font-sans) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: var(--folio-ink-muted) !important;
+  min-height: auto !important;
+  height: auto !important;
+  width: auto !important;
+  letter-spacing: 0.01em !important;
+  transition: all 0.15s ease !important;
+}
+
+div[data-testid="stHorizontalBlock"]:has(.folio-brand-wordmark) div[data-testid="stButton"] > button:hover,
+button[data-testid*="top_nav_"]:hover {
+  color: var(--folio-primary) !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border-bottom: 2px solid var(--folio-border-outline-variant) !important;
+}
+
+div[data-testid="stHorizontalBlock"]:has(.folio-brand-wordmark) div[data-testid="stButton"] > button[kind="primary"],
+div[data-testid="stHorizontalBlock"]:has(.folio-brand-wordmark) div[data-testid="stButton"] > button[data-testid="stBaseButton-primary"],
+button[data-testid*="top_nav_"][kind="primary"],
+button[data-testid*="top_nav_"][data-testid="stBaseButton-primary"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid var(--folio-terracotta-deep) !important;
+  border-radius: 0 !important;
+  color: var(--folio-primary) !important;
+  font-weight: 700 !important;
+  padding: 0.35rem 0.5rem !important;
+  margin: 0 !important;
+  font-size: 14px !important;
+  box-shadow: none !important;
+  min-height: auto !important;
+  height: auto !important;
+  width: auto !important;
+}
+
+/* Context Badge & Search Trigger */
+.folio-workspace-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--folio-surface-container);
+  border: 1px solid var(--folio-border-hairline);
+  border-radius: 4px;
+  padding: 0.35rem 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--folio-ink-primary);
+  white-space: nowrap !important;
+}
+
+.folio-workspace-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--folio-primary-container);
+  flex-shrink: 0;
+}
+
+.folio-search-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: var(--folio-surface-container-low);
+  border: 1px solid var(--folio-border-hairline);
+  border-radius: 4px;
+  padding: 0.35rem 0.65rem;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--folio-ink-muted);
+  white-space: nowrap !important;
+}
+
+/* ========================================================================= */
+/* SEARCH BOX & SUGGESTION CHIPS (PAGE 1)                                    */
+/* ========================================================================= */
+
+.folio-search-shell {
+  background-color: var(--folio-paper-white);
+  border: 1px solid var(--folio-border-hairline);
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+  box-shadow: var(--shadow-paper);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: border-color 0.15s ease;
+  margin-bottom: 0.85rem;
+}
+
+.folio-search-shell:focus-within {
+  border-color: var(--folio-primary-container);
+}
+
+/* Chip Buttons */
+.folio-chips-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.folio-chip-item div[data-testid="stButton"] > button {
+  background-color: var(--folio-surface-container) !important;
+  border: 1px solid var(--folio-border-hairline) !important;
+  border-radius: 4px !important;
+  padding: 0.3rem 0.65rem !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: var(--folio-ink-primary) !important;
+  white-space: nowrap !important;
+  height: auto !important;
+  min-height: auto !important;
+  box-shadow: none !important;
+}
+
+.folio-chip-item div[data-testid="stButton"] > button:hover {
+  background-color: var(--folio-surface-high) !important;
+  border-color: var(--folio-border-outline-variant) !important;
+  color: var(--folio-primary) !important;
+}
+
+/* ========================================================================= */
+/* METRIC BOXES & BADGES                                                     */
+/* ========================================================================= */
+
+.metric-pill-green {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: var(--folio-primary-fixed);
+  color: var(--folio-on-primary-fixed);
+  border-radius: 3px;
+  padding: 0.15rem 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap !important;
+}
+
+.metric-pill-terracotta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: var(--folio-terracotta-fixed);
+  color: var(--folio-on-terracotta-fixed);
+  border-radius: 3px;
+  padding: 0.15rem 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap !important;
+}
+
+.metric-pill-neutral {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: var(--folio-surface-container);
+  color: var(--folio-ink-secondary);
+  border-radius: 3px;
+  padding: 0.15rem 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap !important;
+}
+
+/* ========================================================================= */
+/* BUTTON STYLING OVERRIDES                                                  */
+/* ========================================================================= */
+
+div[data-testid="stButton"] > button[kind="primary"],
+div[data-testid="stButton"] > button[data-testid="stBaseButton-primary"] {
+  background-color: var(--folio-primary-container) !important;
+  color: #FFFFFF !important;
+  border: 1px solid var(--folio-primary-container) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border-radius: 4px !important;
+  padding: 0.5rem 1rem !important;
+  box-shadow: none !important;
+  transition: all 0.15s ease !important;
+  white-space: nowrap !important;
+}
+
+div[data-testid="stButton"] > button[kind="primary"]:hover,
+div[data-testid="stButton"] > button[data-testid="stBaseButton-primary"]:hover {
+  background-color: var(--folio-primary) !important;
+  border-color: var(--folio-primary) !important;
+}
+
+div[data-testid="stButton"] > button[kind="secondary"],
+div[data-testid="stButton"] > button[data-testid="stBaseButton-secondary"] {
+  background-color: var(--folio-paper-white) !important;
+  color: var(--folio-ink-primary) !important;
+  border: 1px solid var(--folio-border-hairline) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border-radius: 4px !important;
+  padding: 0.5rem 1rem !important;
+  box-shadow: none !important;
+  transition: all 0.15s ease !important;
+  white-space: nowrap !important;
+}
+
+div[data-testid="stButton"] > button[kind="secondary"]:hover,
+div[data-testid="stButton"] > button[data-testid="stBaseButton-secondary"]:hover {
+  border-color: var(--folio-primary-container) !important;
+  background-color: var(--folio-surface-high) !important;
+  color: var(--folio-primary) !important;
+}
+
+/* Streamlit Download Button Override */
+div[data-testid="stDownloadButton"] > button {
+  background-color: var(--folio-paper-white) !important;
+  color: var(--folio-ink-primary) !important;
+  border: 1px solid var(--folio-border-hairline) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border-radius: 4px !important;
+  padding: 0.5rem 1rem !important;
+  white-space: nowrap !important;
+  transition: all 0.15s ease !important;
+}
+
+div[data-testid="stDownloadButton"] > button:hover {
+  border-color: var(--folio-primary-container) !important;
+  background-color: var(--folio-surface-high) !important;
+  color: var(--folio-primary) !important;
+}
+
+/* Text Input Clean Override */
+div[data-testid="stTextInput"] input {
+  font-family: var(--font-sans) !important;
+  font-size: 15px !important;
+  color: var(--folio-ink-primary) !important;
+  background: var(--folio-paper-white) !important;
+  border: 1px solid var(--folio-border-hairline) !important;
+  border-radius: 4px !important;
+  padding: 0.5rem 0.75rem !important;
+  box-shadow: none !important;
+}
+
+div[data-testid="stTextInput"] input:focus {
+  border-color: var(--folio-primary-container) !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* File Uploader Clean Override */
+[data-testid="stFileUploader"] section {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+[data-testid="stFileUploader"] section button {
+  border: 1px solid var(--folio-border-hairline) !important;
+  background-color: var(--folio-paper-white) !important;
+  color: var(--folio-primary) !important;
+  font-weight: 600 !important;
+  border-radius: 4px !important;
+}
+
+/* ========================================================================= */
+/* RESPONSIVE BREAKPOINTS                                                    */
+/* ========================================================================= */
+
+@media (max-width: 1024px) {
+  [data-testid="stAppViewBlockContainer"] {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+  .folio-headline-display {
+    font-size: 38px;
+    line-height: 44px;
+  }
+  .folio-headline-lg {
+    font-size: 30px;
+    line-height: 38px;
+  }
+  .folio-metric-numeral {
+    font-size: 36px;
+    line-height: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .folio-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .folio-nav-cluster {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .folio-workspace-badge {
+    display: none;
+  }
+}
