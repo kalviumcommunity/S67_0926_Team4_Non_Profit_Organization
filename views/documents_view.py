@@ -68,9 +68,49 @@ def render_documents_view() -> None:
     # 2. Fast Clause Search & Instant Excerpts Drawer
     render_clause_search(matching_clauses, search_query)
 
-    # 3. Archival Shelf Header
+    # 3. Vector Database & Collection Schema Overview (Module 3.5)
+    from services.rag_service import rag_service
+    v_stats = rag_service.get_vector_collection_stats()
+    
+    with st.expander("⚡ Vector Database & HNSW Index Schema Overview", expanded=False):
+        v_card_html = textwrap.dedent(f"""
+        <div style="background-color: #FFFFFF; border: 1px solid #E4DFD3; border-radius: 6px; padding: 1.25rem 1.5rem; margin-bottom: 0.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #EFEEE9; padding-bottom: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+            <div>
+              <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #1E382B; background-color: #E8EFEA; padding: 3px 8px; border-radius: 3px;">COLLECTION: {v_stats.get('collection_name')}</span>
+              <span style="font-family: ui-monospace, monospace; font-size: 11px; color: #63625D; margin-left: 0.5rem;">{v_stats.get('provider')}</span>
+            </div>
+            <span style="display: inline-flex; align-items: center; gap: 0.35rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; font-weight: 600; color: #082217;">
+              <span style="width: 7px; height: 7px; border-radius: 50%; background-color: #1E382B;"></span>
+              {v_stats.get('index_status')}
+            </span>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;">
+            <div style="background-color: #FBF9F4; border: 1px solid #E4DFD3; border-radius: 4px; padding: 0.75rem 1rem;">
+              <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; color: #727973; text-transform: uppercase;">Indexed Vectors</span>
+              <div style="font-family: 'Newsreader', serif; font-size: 24px; font-weight: 600; color: #082217; margin-top: 0.2rem;">{v_stats.get('total_vectors')} Clauses</div>
+            </div>
+            <div style="background-color: #FBF9F4; border: 1px solid #E4DFD3; border-radius: 4px; padding: 0.75rem 1rem;">
+              <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; color: #727973; text-transform: uppercase;">Vector Dimension</span>
+              <div style="font-family: 'Newsreader', serif; font-size: 24px; font-weight: 600; color: #082217; margin-top: 0.2rem;">{v_stats.get('dimension')}-dim</div>
+            </div>
+            <div style="background-color: #FBF9F4; border: 1px solid #E4DFD3; border-radius: 4px; padding: 0.75rem 1rem;">
+              <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; color: #727973; text-transform: uppercase;">Distance Metric</span>
+              <div style="font-family: 'Newsreader', serif; font-size: 20px; font-weight: 600; color: #A0401C; margin-top: 0.2rem;">{v_stats.get('distance_metric')}</div>
+            </div>
+            <div style="background-color: #FBF9F4; border: 1px solid #E4DFD3; border-radius: 4px; padding: 0.75rem 1rem;">
+              <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; color: #727973; text-transform: uppercase;">HNSW Graph Config</span>
+              <div style="font-family: ui-monospace, monospace; font-size: 13px; font-weight: 600; color: #1B1C19; margin-top: 0.35rem;">M={v_stats.get('hnsw_m')} · ef={v_stats.get('hnsw_ef_search')}</div>
+            </div>
+          </div>
+        </div>
+        """).strip()
+        st.html(v_card_html)
+
+    # 4. Archival Shelf Header
     shelf_hdr_html = textwrap.dedent("""
-    <div style="margin-top: 2.5rem; margin-bottom: 1.25rem; display: flex; justify-content: space-between; align-items: baseline;">
+    <div style="margin-top: 2rem; margin-bottom: 1.25rem; display: flex; justify-content: space-between; align-items: baseline;">
       <div>
         <h2 class="folio-headline-sm" style="margin: 0;">Archival Shelf</h2>
         <p class="folio-body-sm" style="color: #424844; margin: 0.25rem 0 0 0;">Structured sheets with verified legal seals and clause indices.</p>

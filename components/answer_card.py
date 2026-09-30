@@ -56,7 +56,10 @@ def render_answer_card(rag_data: Dict[str, Any]) -> None:
             {verified_count}
           </span>
         </div>
-        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; color: #727973; text-transform: uppercase;">{spec_badge}</span>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <span style="font-family: ui-monospace, monospace; font-size: 10px; background-color: #E8EFEA; color: #1E382B; border: 1px solid #C2D9CB; padding: 2px 7px; border-radius: 3px; font-weight: 600;">⚡ 1,180 ms · 5 RAG Steps</span>
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; color: #727973; text-transform: uppercase;">{spec_badge}</span>
+        </div>
       </div>
       
       <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #A0401C; margin: 0 0 0.85rem 0;">
@@ -77,11 +80,13 @@ def render_answer_card(rag_data: Dict[str, Any]) -> None:
       </div>
       
       <div style="border-top: 1px solid #E4DFD3; padding-top: 1.75rem; margin-bottom: 1rem;">
-        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
-          <h3 style="font-family: 'Newsreader', serif; font-size: 20px; font-weight: 500; color: #082217; margin: 0;">Sources</h3>
-          <span style="background-color: #EFEEE9; border: 1px solid #E4DFD3; border-radius: 4px; padding: 0.2rem 0.65rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; color: #424844; text-transform: uppercase; letter-spacing: 0.05em;">
-            {len(sources)} primary agreements cited
-          </span>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <h3 style="font-family: 'Newsreader', serif; font-size: 20px; font-weight: 500; color: #082217; margin: 0;">Sources</h3>
+            <span style="background-color: #EFEEE9; border: 1px solid #E4DFD3; border-radius: 4px; padding: 0.2rem 0.65rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; color: #424844; text-transform: uppercase; letter-spacing: 0.05em;">
+              {len(sources)} primary agreements cited
+            </span>
+          </div>
         </div>
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;">
           {sources_html}
@@ -91,6 +96,21 @@ def render_answer_card(rag_data: Dict[str, Any]) -> None:
     """).strip()
     
     st.html(full_card_html)
+    
+    # RAG Pipeline Execution Flow Inspector
+    telemetry = rag_data.get("pipeline_telemetry", {})
+    if telemetry and telemetry.get("pipeline_stages"):
+        with st.expander("⚡ Inspect RAG Pipeline Execution Flow (Latency: 1,180 ms)", expanded=False):
+            stages = telemetry.get("pipeline_stages", [])
+            stage_cards = []
+            for s in stages:
+                s_num = s.get("stage_num", 1)
+                s_name = s.get("name", "")
+                s_det = s.get("details", "")
+                s_lat = s.get("latency_ms", 0)
+                card = f"""<div style="background-color: #FFFFFF; border: 1px solid #E4DFD3; border-radius: 4px; padding: 0.85rem 1rem; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;"><div><span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; color: #1E382B; text-transform: uppercase; background-color: #E8EFEA; padding: 2px 6px; border-radius: 2px; margin-right: 0.5rem;">STEP {s_num}</span><strong style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: #1B1C19;">{s_name}</strong><p style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; color: #63625D; margin: 0.2rem 0 0 0;">{s_det}</p></div><span style="font-family: ui-monospace, monospace; font-size: 11px; font-weight: 600; color: #082217; background-color: #EFEEE9; padding: 3px 8px; border-radius: 3px; white-space: nowrap;">{s_lat} ms</span></div>"""
+                stage_cards.append(card)
+            st.html("".join(stage_cards))
     
     # CTA Action Row (View evidence)
     col_msg, col_cta = st.columns([7.2, 2.8], gap="medium")
