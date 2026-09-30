@@ -39,8 +39,54 @@ class MockRAGService(BaseRAGService):
             "dimension_tag": f"{self.embedding_dimension}-dim"
         }
 
+    def get_pipeline_telemetry(self, query: str) -> Dict[str, Any]:
+        """Generate end-to-end RAG pipeline orchestration telemetry."""
+        return {
+            "query": query,
+            "total_latency_ms": 1180,
+            "pipeline_stages": [
+                {
+                    "stage_num": 1,
+                    "name": "Query Embedding",
+                    "details": "Vectorized inquiry into 1536-dim dense semantic representation (text-embedding-3-small)",
+                    "latency_ms": 140,
+                    "status": "COMPLETED"
+                },
+                {
+                    "stage_num": 2,
+                    "name": "HNSW Vector Retrieval",
+                    "details": "Scanned collection 'folio_grant_instruments_v1' across 48 indexed clauses (Top-K = 5)",
+                    "latency_ms": 180,
+                    "status": "COMPLETED"
+                },
+                {
+                    "stage_num": 3,
+                    "name": "Clause Re-Ranking",
+                    "details": "Evaluated cosine relevance cutoff (>= 0.75) and prioritized binding grant charters",
+                    "latency_ms": 220,
+                    "status": "COMPLETED"
+                },
+                {
+                    "stage_num": 4,
+                    "name": "Context Injection & Grounding",
+                    "details": "Assembled 2 verified clause excerpts within 1,200 token budget window",
+                    "latency_ms": 110,
+                    "status": "COMPLETED"
+                },
+                {
+                    "stage_num": 5,
+                    "name": "Zero-Extrapolation Synthesis",
+                    "details": "Generated structured editorial answer with verified specification seal and citations",
+                    "latency_ms": 530,
+                    "status": "COMPLETED"
+                }
+            ],
+            "confidence_rating": "99.4% Grounded",
+            "hallucination_guardrail": "PASSED (Zero Extrapolation)"
+        }
+
     def _enrich_with_embeddings(self, result: Dict[str, Any]) -> Dict[str, Any]:
-        """Enrich query result sources with vector embedding similarity scores and dimensionality tags."""
+        """Enrich query result sources with vector embedding similarity scores, dimensionality tags, and pipeline telemetry."""
         if not result or "data" not in result or not result["data"]:
             return result
         
@@ -57,11 +103,16 @@ class MockRAGService(BaseRAGService):
             src["embedding_model"] = emb_meta["model"]
             src["cosine_score"] = emb_meta["cosine_score"]
 
-        # Add top-level embedding confidence summary
+        # Add top-level embedding confidence summary and pipeline telemetry
         data["embedding_model"] = self.embedding_model
         data["embedding_dimension"] = self.embedding_dimension
         data["distance_metric"] = self.distance_metric
+        data["pipeline_telemetry"] = self.get_pipeline_telemetry(data.get("question", ""))
         return result
+
+    def execute_rag_pipeline(self, query: str) -> Dict[str, Any]:
+        """Execute end-to-end RAG synthesis pipeline with full step telemetry."""
+        return self.ask_question(query)
         
     def ask_question(self, query: str) -> Dict[str, Any]:
         """Execute a query and return structured grounded response with semantic citations."""

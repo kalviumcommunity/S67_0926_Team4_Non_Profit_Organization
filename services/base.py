@@ -10,6 +10,11 @@ class BaseRAGService(ABC):
     def ask_question(self, query: str) -> Dict[str, Any]:
         """Execute a query and return structured grounded response with citations."""
         pass
+
+    @abstractmethod
+    def execute_rag_pipeline(self, query: str) -> Dict[str, Any]:
+        """Execute the end-to-end RAG pipeline with step-by-step telemetry."""
+        pass
     
     @abstractmethod
     def get_suggested_queries(self) -> List[str]:

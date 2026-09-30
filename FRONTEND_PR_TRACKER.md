@@ -54,7 +54,7 @@ python3 push_pr.py --history
 | **3.3** | Document Processing & Chunking for Retrieval | ⚙️ Shared | Document service interface, mock data | `frontend/3.3-document-processing-chunking` | `[x]` |
 | **3.4** | Embeddings & Semantic Representation | ⚙️ Shared | Embedding vector models & metrics | `frontend/3.4-embeddings-semantic-representation` | `[x]` |
 | **3.5** | Vector Databases & Retrieval | ⚙️ Shared | Vector collection schema & indexing | `frontend/3.5-vector-databases-retrieval` | `[x]` |
-| **3.6** | RAG Pipeline Design & Grounded Generation | ⚙️ Shared | Retrieval + synthesis pipeline flow | `frontend/3.6-rag-pipeline-design` | `[ ]` |
+| **3.6** | RAG Pipeline Design & Grounded Generation | ⚙️ Shared | Retrieval + synthesis pipeline flow | `frontend/3.6-rag-pipeline-design` | `[x]` |
 | **3.7** | AI Application Integration & Deliver | 🎨 Frontend | Streamlit app entrypoint (`app.py`), service bridge | `frontend/3.7-ai-application-integration` | `[ ]` |
 | **3.8** | The PRD Playbook | 🎨 Frontend | Product Requirement Document & user stories | `frontend/3.8-the-prd-playbook` | `[ ]` |
 | **3.9** | Mock UX: Design the Experience Before You Build It | 🎨 Frontend | Quiet Editorial design system, typography, CSS tokens (`styles/theme.css`, `stitch_folio/`) | `frontend/3.9-mock-ux-design-the-experience` | `[ ]` |
