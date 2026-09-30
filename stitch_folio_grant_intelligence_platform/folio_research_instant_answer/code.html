@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FOLIO — Research &amp; Grants Intelligence</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#fe875d",
+            "surface-dim": "#dbdad5",
+            "on-primary-container": "#85a291",
+            "tertiary-fixed-dim": "#cac6bd",
+            "on-primary-fixed": "#052015",
+            "surface": "#fbf9f4",
+            "surface-container-highest": "#e4e2de",
+            "tertiary-fixed": "#e6e2d8",
+            "on-secondary-fixed": "#390c00",
+            "primary": "#082217",
+            "surface-variant": "#e4e2de",
+            "error": "#ba1a1a",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed": "#1c1c16",
+            "tertiary": "#1f1e18",
+            "secondary": "#a0401c",
+            "on-tertiary-container": "#9e9b92",
+            "on-secondary-container": "#722200",
+            "on-secondary-fixed-variant": "#802a05",
+            "on-error": "#ffffff",
+            "outline": "#727973",
+            "tertiary-container": "#34332c",
+            "inverse-on-surface": "#f2f1ec",
+            "secondary-fixed-dim": "#ffb59c",
+            "on-tertiary": "#ffffff",
+            "primary-fixed": "#cbead7",
+            "secondary-fixed": "#ffdbcf",
+            "on-primary-fixed-variant": "#324c3e",
+            "on-surface": "#1b1c19",
+            "surface-tint": "#496455",
+            "inverse-surface": "#30312e",
+            "on-error-container": "#93000a",
+            "surface-bright": "#fbf9f4",
+            "background": "#fbf9f4",
+            "primary-container": "#1e382b",
+            "error-container": "#ffdad6",
+            "surface-container-high": "#e9e8e3",
+            "surface-container-low": "#f5f4ef",
+            "outline-variant": "#c2c8c2",
+            "on-secondary": "#ffffff",
+            "inverse-primary": "#b0cdbb",
+            "on-tertiary-fixed-variant": "#484740",
+            "on-primary": "#ffffff",
+            "on-surface-variant": "#424844",
+            "surface-container": "#efeee9",
+            "primary-fixed-dim": "#b0cdbb",
+            "on-background": "#1b1c19"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-lg": "2rem",
+            "margin-mobile": "1.25rem",
+            "space-sm": "0.75rem",
+            "gutter-mobile": "1rem",
+            "margin": "3rem",
+            "gutter": "1.5rem",
+            "space-xl": "3.5rem",
+            "space-xs": "0.375rem",
+            "space-md": "1.25rem"
+          },
+          "fontFamily": {
+            "metric-numeral": ["Newsreader", "serif"],
+            "label-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg-mobile": ["Newsreader", "serif"],
+            "headline-md": ["Newsreader", "serif"],
+            "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "display-lg-mobile": ["Newsreader", "serif"],
+            "headline-sm": ["Newsreader", "serif"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"],
+            "body-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg": ["Newsreader", "serif"],
+            "label-md": ["Plus Jakarta Sans", "sans-serif"],
+            "display-lg": ["Newsreader", "serif"]
+          },
+          "fontSize": {
+            "metric-numeral": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "headline-md": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.015em", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.005em", "fontWeight": "500" }],
+            "body-md": ["15px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "letterSpacing": "0.005em", "fontWeight": "400" }],
+            "headline-lg": ["38px", { "lineHeight": "46px", "letterSpacing": "-0.015em", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "display-lg": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      vertical-align: middle;
+      display: inline-block;
+      line-height: 1;
+    }
+    .sheet-shadow {
+      box-shadow: 0 2px 8px -2px rgba(44, 45, 42, 0.05), 0 1px 3px 0 rgba(44, 45, 42, 0.03);
+    }
+    .paper-tier-1 {
+      border: 1px solid #E4DFD3;
+      background-color: #F7F4EE;
+    }
+    .paper-tier-2 {
+      border: 1px solid #E4DFD3;
+      background-color: #FFFFFF;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md min-h-screen antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar (Shared Component Execution) -->
+<header class="w-full bg-surface border-b border-outline-variant sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-gutter flex justify-between items-center h-16 w-full">
+<!-- Brand & Primary Nav Links -->
+<div class="flex items-center space-x-10">
+<a class="font-headline-md text-headline-md tracking-tight text-primary font-normal" href="#">
+          FOLIO
+        </a>
+<nav class="hidden md:flex items-center space-x-6 text-label-md font-label-md">
+<!-- Active Tab: Research -->
+<a class="text-primary font-semibold border-b-2 border-secondary pb-1 transition-colors duration-150 ease-in-out" href="#">
+            Research
+          </a>
+<a class="text-on-surface-variant pb-1 hover:text-primary transition-colors duration-150 ease-in-out" href="#">
+            Evidence
+          </a>
+<a class="text-on-surface-variant pb-1 hover:text-primary transition-colors duration-150 ease-in-out" href="#">
+            Documents
+          </a>
+</nav>
+</div>
+<!-- Trailing Context & Secondary Tools -->
+<div class="flex items-center space-x-4">
+<!-- Workspace Pill: Helios Foundation 2025–26 Grants -->
+<div class="hidden sm:flex items-center space-x-2 bg-surface-container px-3 py-1.5 rounded border border-outline-variant text-label-md font-label-md text-on-surface">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="text-on-surface font-medium">Helios Foundation 2025–26 Grants</span>
+<span class="text-on-surface-variant font-normal text-body-sm">· 4 agreements active</span>
+</div>
+<!-- Trailing Secondary: ⌘K Search -->
+<button class="hidden lg:flex items-center space-x-1.5 px-2.5 py-1 rounded bg-surface-container-low border border-outline-variant text-body-sm font-body-sm text-on-surface-variant hover:text-primary hover:border-outline transition-colors duration-150">
+<span>⌘K Search</span>
+</button>
+<!-- Trailing Icon Action: account_circle -->
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-150 p-1 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="max-w-5xl mx-auto px-gutter-mobile md:px-gutter pt-12 pb-space-xl">
+<!-- 1. Search Focus Area -->
+<section class="mb-14">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight mb-6">
+        Ask your grants.
+      </h1>
+<!-- Input Box -->
+<div class="paper-tier-2 rounded-lg p-2 pl-5 flex items-center justify-between border border-outline-variant shadow-sm transition-all focus-within:border-primary-container">
+<div class="flex items-center space-x-3 w-full mr-3">
+<span class="material-symbols-outlined text-outline text-xl">search</span>
+<input class="w-full bg-transparent border-none p-0 text-body-lg font-body-lg text-on-surface placeholder:text-outline focus:ring-0 focus:outline-none" placeholder="What are the reporting requirements?" type="text" value="What are the reporting requirements?"/>
+</div>
+<button class="bg-primary-container hover:bg-primary text-on-primary w-11 h-11 rounded flex items-center justify-center transition-colors duration-150 shrink-0">
+<span class="material-symbols-outlined text-xl">arrow_upward</span>
+</button>
+</div>
+<!-- Chips Section -->
+<div class="mt-4 flex flex-wrap items-center gap-2">
+<span class="text-label-sm font-label-sm text-on-surface-variant mr-1">SUGGESTED</span>
+<button class="px-2.5 py-1 text-label-md font-label-md text-on-surface bg-surface-container hover:bg-surface-container-high rounded border border-outline-variant transition-colors duration-150">
+          Reporting deadlines
+        </button>
+<button class="px-2.5 py-1 text-label-md font-label-md text-on-surface bg-surface-container hover:bg-surface-container-high rounded border border-outline-variant transition-colors duration-150">
+          Indirect costs
+        </button>
+<button class="px-2.5 py-1 text-label-md font-label-md text-on-surface bg-surface-container hover:bg-surface-container-high rounded border border-outline-variant transition-colors duration-150">
+          Eligible expenses
+        </button>
+<button class="px-2.5 py-1 text-label-md font-label-md text-on-surface bg-surface-container hover:bg-surface-container-high rounded border border-outline-variant transition-colors duration-150">
+          Funding rules
+        </button>
+</div>
+</section>
+<!-- 2. Answer State Block -->
+<section class="paper-tier-1 rounded-lg p-8 md:p-10 mb-10 border border-outline-variant relative">
+<!-- Query Metadata Recap -->
+<div class="flex flex-wrap items-center justify-between pb-5 border-b border-outline-variant mb-6 gap-3">
+<div class="flex items-center space-x-2 text-body-sm font-body-sm text-on-surface-variant">
+<span class="text-on-surface font-medium">Asked:</span>
+<span>“What are the reporting requirements?”</span>
+<span class="text-outline">·</span>
+<span class="inline-flex items-center text-primary font-medium">
+<span class="material-symbols-outlined text-sm mr-1 text-primary">verified</span>
+            2 sources verified
+          </span>
+</div>
+<span class="text-label-sm font-label-sm text-outline tracking-wider">PORTAL VERIFIED SPECIFICATION</span>
+</div>
+<!-- Editorial Headline -->
+<h2 class="text-label-md font-label-md text-secondary tracking-widest uppercase mb-3">
+        REPORTING REQUIREMENTS
+      </h2>
+<!-- Answer Prose -->
+<div class="max-w-3xl mb-8">
+<p class="font-headline-sm text-headline-sm text-on-surface leading-relaxed mb-4">
+          Quarterly financial reports are required within 30 days after each calendar quarter.
+        </p>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-3">
+          An annual comprehensive impact narrative is required at the end of the funding period. All submissions must be uploaded directly via the Helios grantee portal.
+        </p>
+</div>
+<!-- 3. Visual Communication Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+<!-- Box 1: 30 DAYS -->
+<div class="paper-tier-2 p-5 rounded border border-outline-variant sheet-shadow flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="inline-flex items-center text-label-sm font-label-sm text-primary bg-primary-fixed px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-xs mr-1">calendar_today</span>
+                Deadline
+              </span>
+<span class="text-label-sm font-label-sm text-outline">Q1-Q4</span>
+</div>
+<div class="font-metric-numeral text-metric-numeral text-primary mb-1">
+              30 DAYS
+            </div>
+</div>
+<div class="pt-3 border-t border-surface-variant mt-2">
+<p class="font-label-md text-label-md text-on-surface font-semibold">Quarterly financial filing</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Due 30 days post quarter-end</p>
+</div>
+</div>
+<!-- Box 2: YEAR END -->
+<div class="paper-tier-2 p-5 rounded border border-outline-variant sheet-shadow flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="inline-flex items-center text-label-sm font-label-sm text-primary bg-primary-fixed px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-xs mr-1">check_circle</span>
+                Required
+              </span>
+<span class="text-label-sm font-label-sm text-outline">ANNUAL</span>
+</div>
+<div class="font-metric-numeral text-metric-numeral text-primary mb-1">
+              YEAR END
+            </div>
+</div>
+<div class="pt-3 border-t border-surface-variant mt-2">
+<p class="font-label-md text-label-md text-on-surface font-semibold">Annual Impact Narrative</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Final grant closeout protocol</p>
+</div>
+</div>
+<!-- Box 3: 10% CAP -->
+<div class="paper-tier-2 p-5 rounded border border-outline-variant sheet-shadow flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="inline-flex items-center text-label-sm font-label-sm text-on-secondary-container bg-secondary-fixed px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-xs mr-1">warning</span>
+                Restriction
+              </span>
+<span class="text-label-sm font-label-sm text-outline">BUDGET</span>
+</div>
+<div class="font-metric-numeral text-metric-numeral text-secondary mb-1">
+              10% CAP
+            </div>
+</div>
+<div class="pt-3 border-t border-surface-variant mt-2">
+<p class="font-label-md text-label-md text-on-surface font-semibold">Variance allowance</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Written approval above $15k</p>
+</div>
+</div>
+</div>
+<!-- 4. Sources Preview (Paper-like mini sheets) -->
+<div class="pt-6 border-t border-outline-variant">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center space-x-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">Sources</h3>
+<span class="bg-surface-container px-2 py-0.5 rounded text-label-sm font-label-sm text-on-surface-variant border border-outline-variant">
+              2 primary agreements cited
+            </span>
+</div>
+</div>
+<!-- Mini Sheet Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+<!-- Sheet 1 -->
+<div class="paper-tier-2 p-5 rounded border border-outline-variant sheet-shadow transition hover:border-outline">
+<div class="flex items-center justify-between text-label-sm font-label-sm text-outline mb-2">
+<span class="uppercase tracking-wider font-semibold text-primary">GRANT GUIDELINES 2025</span>
+<span>§ 5.1 Financial Disclosures · p. 8</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic pl-3 border-l-2 border-primary-container">
+              “...financial expenditure reports must be submitted within 30 days of quarter end via the authorized recipient management system...”
+            </p>
+</div>
+<!-- Sheet 2 -->
+<div class="paper-tier-2 p-5 rounded border border-outline-variant sheet-shadow transition hover:border-outline">
+<div class="flex items-center justify-between text-label-sm font-label-sm text-outline mb-2">
+<span class="uppercase tracking-wider font-semibold text-primary">DONOR AGREEMENT #H-882</span>
+<span>§ 7.2 Annual Evaluation · p. 14</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic pl-3 border-l-2 border-secondary">
+              “...grantee agrees to provide a formal narrative impact report upon year end detailing measurable programmatic metrics and community cohort outcomes...”
+            </p>
+</div>
+</div>
+<!-- 5. Primary Action (Call to action) -->
+<div class="flex items-center justify-between pt-2">
+<div class="text-body-sm font-body-sm text-on-surface-variant">
+            Full cross-referenced dossier compiled from original executed charters.
+          </div>
+<a class="inline-flex items-center space-x-2 bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md px-5 py-3 rounded transition-colors duration-150" href="#">
+<span>View evidence</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Context Footer Sub-note -->
+<footer class="text-center text-body-sm font-body-sm text-outline">
+      FOLIO Editorial Grants Intelligence · Institutional Archive Helios 2025–2026
+    </footer>
+</main>
+</body></html>
