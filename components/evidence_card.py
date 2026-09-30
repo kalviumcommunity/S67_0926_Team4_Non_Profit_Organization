@@ -6,7 +6,7 @@ from typing import Dict, Any
 from utils.state import view_document_detail
 
 def render_evidence_sheet(sheet: Dict[str, Any], key_suffix: str = "") -> None:
-    """Render authentic physical document excerpt sheet with deckle accent and highlighted marks."""
+    """Render authentic physical document excerpt sheet with deckle accent, highlighted marks, and semantic match score."""
     deckle_color = sheet.get("deckle_color", "#1E382B")
     ledger_tag = sheet.get("ledger_tag", "Archival Ledger 2025.1")
     doc_title = sheet.get("doc_title", "Grant Guidelines")
@@ -23,6 +23,8 @@ def render_evidence_sheet(sheet: Dict[str, Any], key_suffix: str = "") -> None:
     badge_bg = "#EFEEE9" if is_primary else "#FFDBCF"
     badge_color = "#082217" if is_primary else "#802A05"
     pip_color = "#1E382B" if is_primary else "#A0401C"
+    similarity_score = sheet.get("similarity_score", 0.984 if is_primary else 0.942)
+    match_pct = f"{int(round(similarity_score * 100))}% match"
     
     sheet_html = textwrap.dedent(f"""
     <div style="background-color: #FFFFFF; border: 1px solid #E4DFD3; border-radius: 4px; padding: 1.75rem 2rem; box-shadow: 0 2px 8px -2px rgba(44, 45, 42, 0.04); position: relative; overflow: hidden; height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
@@ -31,8 +33,11 @@ def render_evidence_sheet(sheet: Dict[str, Any], key_suffix: str = "") -> None:
       <div>
         <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid #E4DFD3; padding-bottom: 1rem; margin-bottom: 1.25rem;">
           <div>
-            <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #727973; display: block;">{ledger_tag}</span>
-            <h3 style="font-family: 'Newsreader', serif; font-size: 18px; font-weight: 600; color: #082217; margin: 0.25rem 0 0 0; line-height: 1.3;">{doc_title}</h3>
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+              <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #727973;">{ledger_tag}</span>
+              <span style="background-color: #E8EFEA; color: #1E382B; border: 1px solid #C2D9CB; border-radius: 3px; padding: 0.08rem 0.35rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 9.5px; font-weight: 700; text-transform: uppercase;">{match_pct}</span>
+            </div>
+            <h3 style="font-family: 'Newsreader', serif; font-size: 18px; font-weight: 600; color: #082217; margin: 0; line-height: 1.3;">{doc_title}</h3>
           </div>
           <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 0.35rem;">
             <span style="background-color: {badge_bg}; color: {badge_color}; border: 1px solid #E4DFD3; border-radius: 4px; padding: 0.15rem 0.55rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; font-weight: 600; white-space: nowrap;">{clause_badge}</span>
@@ -53,6 +58,7 @@ def render_evidence_sheet(sheet: Dict[str, Any], key_suffix: str = "") -> None:
       
       <div style="border-top: 1px solid #E4DFD3; padding-top: 0.85rem; margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; color: #727973;">
         <span>{doc_id_label}</span>
+        <span style="font-family: ui-monospace, monospace; font-size: 10px; color: #727973; background-color: #EFEEE9; padding: 2px 6px; border-radius: 3px;">1536-dim · text-embedding-3-small</span>
       </div>
     </div>
     """).strip()

@@ -52,7 +52,7 @@ python3 push_pr.py --history
 | **3.1** | Sprint 2 Kick-Off: AI Application Development with RAG | 🎨 Frontend | Architecture, stack overview, UI layout | `frontend/3.1-sprint-2-kick-off` | `[x]` |
 | **3.2** | LLM Application Foundations | ⚙️ Shared | Environment setup, API key config | `frontend/3.2-llm-application-foundations` | `[x]` |
 | **3.3** | Document Processing & Chunking for Retrieval | ⚙️ Shared | Document service interface, mock data | `frontend/3.3-document-processing-chunking` | `[x]` |
-| **3.4** | Embeddings & Semantic Representation | ⚙️ Shared | Embedding vector models & metrics | `frontend/3.4-embeddings-semantic-representation` | `[ ]` |
+| **3.4** | Embeddings & Semantic Representation | ⚙️ Shared | Embedding vector models & metrics | `frontend/3.4-embeddings-semantic-representation` | `[x]` |
 | **3.5** | Vector Databases & Retrieval | ⚙️ Shared | Vector collection schema & indexing | `frontend/3.5-vector-databases-retrieval` | `[ ]` |
 | **3.6** | RAG Pipeline Design & Grounded Generation | ⚙️ Shared | Retrieval + synthesis pipeline flow | `frontend/3.6-rag-pipeline-design` | `[ ]` |
 | **3.7** | AI Application Integration & Deliver | 🎨 Frontend | Streamlit app entrypoint (`app.py`), service bridge | `frontend/3.7-ai-application-integration` | `[ ]` |

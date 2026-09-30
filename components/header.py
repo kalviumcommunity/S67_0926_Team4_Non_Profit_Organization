@@ -2,7 +2,7 @@
 
 import streamlit as st
 import textwrap
-from utils.constants import NAV_RESEARCH, NAV_EVIDENCE, NAV_DOCUMENTS
+from utils.constants import NAV_RESEARCH, NAV_EVIDENCE, NAV_DOCUMENTS, NAV_ABOUT
 
 def render_top_navbar() -> None:
     """Render the sticky shared top navigation bar matching the Stitch editorial design."""
@@ -10,10 +10,10 @@ def render_top_navbar() -> None:
     
     st.html('<div class="folio-header-container">')
     
-    col_nav, col_tools = st.columns([5.2, 6.8], gap="medium")
+    col_nav, col_tools = st.columns([6.0, 6.0], gap="medium")
     
     with col_nav:
-        c_brand, c_r, c_e, c_d = st.columns([1.3, 1.1, 1.1, 1.3], gap="small")
+        c_brand, c_r, c_e, c_d, c_a = st.columns([1.2, 1.1, 1.1, 1.3, 1.2], gap="small")
         
         with c_brand:
             st.html('<div style="padding-top: 0.2rem; cursor: pointer;"><span class="folio-brand-wordmark">FOLIO</span></div>')
@@ -36,6 +36,13 @@ def render_top_navbar() -> None:
             is_active = current_page == NAV_DOCUMENTS
             if st.button("Documents", key="top_nav_documents", type="primary" if is_active else "secondary", use_container_width=True):
                 st.session_state.current_page = NAV_DOCUMENTS
+                st.session_state.document_view_mode = "shelf"
+                st.rerun()
+
+        with c_a:
+            is_active = current_page == NAV_ABOUT
+            if st.button("About Us", key="top_nav_about", type="primary" if is_active else "secondary", use_container_width=True):
+                st.session_state.current_page = NAV_ABOUT
                 st.session_state.document_view_mode = "shelf"
                 st.rerun()
             
