@@ -127,5 +127,31 @@ class MockRAGService(BaseRAGService):
         """Retrieve suggested queries."""
         return list(MOCK_QUERIES.keys())
 
+    def get_vector_collection_stats(self) -> Dict[str, Any]:
+        """Retrieve vector database collection health, schema, and HNSW indexing statistics."""
+        return {
+            "collection_name": settings.VECTOR_COLLECTION_NAME,
+            "provider": settings.VECTOR_DB_PROVIDER,
+            "total_vectors": settings.TOTAL_INDEXED_VECTORS,
+            "indexed_clauses": 48,
+            "dimension": settings.VECTOR_DIMENSION,
+            "distance_metric": settings.DISTANCE_METRIC,
+            "hnsw_m": settings.HNSW_M,
+            "hnsw_ef_search": settings.HNSW_EF_SEARCH,
+            "hnsw_ef_construction": settings.HNSW_EF_CONSTRUCTION,
+            "index_status": settings.HNSW_INDEX_STATUS,
+            "payload_fields": [
+                "doc_id",
+                "clause_number",
+                "section_header",
+                "category",
+                "funding_agency",
+                "effective_year",
+                "sha256_hash",
+                "is_binding"
+            ],
+            "last_synced": "2026-09-28 11:30:00"
+        }
+
 # Default Singleton Instance
 rag_service = MockRAGService()
