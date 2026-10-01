@@ -4,3 +4,10 @@ pypdf
 pytest
 streamlit>=1.35.0
 pandas>=2.0.0
+langchain
+langchain-community
+langchain-openai
+langchain-chroma
+pypdf
+pandas
+python-docx
