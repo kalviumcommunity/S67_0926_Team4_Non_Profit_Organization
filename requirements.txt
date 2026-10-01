@@ -11,3 +11,7 @@ langchain-chroma
 pypdf
 pandas
 python-docx
+fastapi
+uvicorn
+python-dotenv
+requests
