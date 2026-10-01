@@ -1,6 +1,6 @@
 numpy
 scikit-learn
-pypdf
 pytest
 streamlit>=1.35.0
 pandas>=2.0.0
+pypdf>=5.0,<7.0
