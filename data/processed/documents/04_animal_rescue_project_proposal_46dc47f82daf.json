@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "document_id": "sha256:46dc47f82dafafd5f44bb1deb15635d1da54a05f9d28a9cb1f661763eec57c6d",
+  "source_filename": "04_animal_rescue_project_proposal.pdf",
+  "document_type": "pdf",
+  "sha256": "46dc47f82dafafd5f44bb1deb15635d1da54a05f9d28a9cb1f661763eec57c6d",
+  "file_size_bytes": 2616,
+  "page_count": 1,
+  "ingested_at": "2026-10-01T04:29:04.023779+00:00",
+  "pdf_metadata": {
+    "title": "Community Animal Rescue and Care Proposal",
+    "author": "(anonymous)",
+    "subject": "(unspecified)",
+    "creator": "(unspecified)"
+  },
+  "extraction": {
+    "engine": "pypdf",
+    "status": "completed",
+    "ocr_applied": false
+  },
+  "pages": [
+    {
+      "page_number": 1,
+      "text": "Community Animal Rescue and Care Proposal\nFictional test document — for software testing only\nApplicant: Happy Tails Animal Rescue\nProject duration: 1 April 2027 – 31 March 2028\nFunding requested: ■8,50,000\nProject objective\nProvide coordinated food, basic veterinary care and vaccination support for rescued and community\nanimals in the fictional service area of Greenfield District.\nPlanned activities\n1. Purchase and distribute animal food based on documented need.\n2. Arrange veterinary consultations and emergency referrals.\n3. Conduct vaccination and sterilization drives with qualified veterinary partners.\n4. Maintain animal intake, treatment and adoption records.\n5. Publish periodic donation and expenditure summaries.\nIllustrative targets\nSupport 200 animals with food; provide 120 veterinary consultations; administer 180 vaccinations;\nsupport 50 sterilization procedures; and maintain complete records for all project-funded activities.\nMonitoring\nProgress will be tracked using dated service records, veterinary invoices, donation ledgers and quarterly\nexpenditure summaries. Targets are planned outputs and should not be represented as achieved\nresults."
+    }
+  ]
+}
