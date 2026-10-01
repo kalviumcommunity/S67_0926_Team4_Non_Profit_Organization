@@ -27,7 +27,7 @@ inject_custom_styles()
 
 # 3. Initialize Session State
 from utils.state import init_session_state
-from utils.constants import NAV_RESEARCH, NAV_EVIDENCE, NAV_DOCUMENTS
+from utils.constants import NAV_RESEARCH, NAV_EVIDENCE, NAV_DOCUMENTS, NAV_ABOUT
 
 init_session_state()
 
@@ -40,6 +40,7 @@ render_top_navbar()
 from views.research_view import render_research_view
 from views.evidence_view import render_evidence_view
 from views.documents_view import render_documents_view
+from views.about_view import render_about_view
 
 current_page = st.session_state.get("current_page", NAV_RESEARCH)
 
@@ -49,5 +50,7 @@ elif current_page == NAV_EVIDENCE:
     render_evidence_view()
 elif current_page == NAV_DOCUMENTS:
     render_documents_view()
+elif current_page == NAV_ABOUT:
+    render_about_view()
 else:
     st.error(f"Unknown page: {current_page}")
