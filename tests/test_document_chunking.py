@@ -1,4 +1,4 @@
-from src.processing.chunk_documents import (
+from src.preprocessing.chunk_documents import (
     chunk_document,
     split_into_sections,
     split_with_overlap,
