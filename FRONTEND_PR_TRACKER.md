@@ -55,9 +55,9 @@ python3 push_pr.py --history
 | **3.4** | Embeddings & Semantic Representation | ⚙️ Shared | Embedding vector models & metrics | `frontend/3.4-embeddings-semantic-representation` | `[x]` |
 | **3.5** | Vector Databases & Retrieval | ⚙️ Shared | Vector collection schema & indexing | `frontend/3.5-vector-databases-retrieval` | `[x]` |
 | **3.6** | RAG Pipeline Design & Grounded Generation | ⚙️ Shared | Retrieval + synthesis pipeline flow | `frontend/3.6-rag-pipeline-design` | `[x]` |
-| **3.7** | AI Application Integration & Deliver | 🎨 Frontend | Streamlit app entrypoint (`app.py`), service bridge | `frontend/3.7-ai-application-integration-deliver` | `[x]` |
-| **3.8** | The PRD Playbook | 🎨 Frontend | Product Requirement Document & user stories | `frontend/3.8-the-prd-playbook` | `[x]` |
-| **3.9** | Mock UX: Design the Experience Before You Build It | 🎨 Frontend | Quiet Editorial design system, typography, CSS tokens (`styles/theme.css`, `stitch_folio/`) | `frontend/3.9-mock-ux-design-the-experience-befor` | `[x]` |
+| **3.7** | AI Application Integration & Deliver | 🎨 Frontend | Streamlit app entrypoint (`app.py`), service bridge | `frontend/3.7-ai-application-integration` | `[ ]` |
+| **3.8** | The PRD Playbook | 🎨 Frontend | Product Requirement Document & user stories | `frontend/3.8-the-prd-playbook` | `[ ]` |
+| **3.9** | Mock UX: Design the Experience Before You Build It | 🎨 Frontend | Quiet Editorial design system, typography, CSS tokens (`styles/theme.css`, `stitch_folio/`) | `frontend/3.9-mock-ux-design-the-experience` | `[ ]` |
 | **3.10** | Development Environment & Project Workspace Setup | 🎨 Frontend | Workspace setup, `.gitignore`, Streamlit theme (`.streamlit/config.toml`) | `frontend/3.10-dev-environment-setup` | `[ ]` |
 | **3.11** | GitHub Repository & Team Workflow Setup | 🎨 Frontend | PR template (`.github/pull_request_template.md`), PR automation tool (`push_pr.py`) | `frontend/3.11-github-repo-team-workflow` | `[ ]` |
 | **3.12** | LLM API Access & First Completion Call | ⚙️ Shared | Client configuration & connection test | `frontend/3.12-llm-api-access-first-completion` | `[ ]` |

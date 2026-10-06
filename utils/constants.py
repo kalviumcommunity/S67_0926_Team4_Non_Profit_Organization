@@ -4,6 +4,7 @@
 NAV_RESEARCH = "Research"
 NAV_EVIDENCE = "Evidence"
 NAV_DOCUMENTS = "Documents"
+NAV_ABOUT = "About Us"
 
 # Document Categories
 DOC_TYPE_ALL = "All"
