@@ -70,5 +70,13 @@
     "pr_url": "https://github.com/kalviumcommunity/S67_0926_Team4_Non_Profit_Organization/compare/main...frontend/3.9-mock-ux-design-the-experience-befor?expand=1",
     "commit_hash": "7d29aab",
     "timestamp": "2026-10-06 09:44:36"
+  },
+  "3.50": {
+    "module_id": "3.50",
+    "branch_name": "frontend/3.50-sprint-2-rag-application---final-su",
+    "pr_title": "feat(frontend): [3.50] Sprint 2 RAG Application - Final Submission",
+    "pr_url": "https://github.com/kalviumcommunity/S67_0926_Team4_Non_Profit_Organization/compare/main...frontend/3.50-sprint-2-rag-application---final-su?expand=1",
+    "commit_hash": "29ef652",
+    "timestamp": "2026-10-06 10:06:18"
   }
 }
