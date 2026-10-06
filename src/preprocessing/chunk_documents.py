@@ -152,6 +152,8 @@ def chunk_document(
     if not document_id:
         raise ValueError("Processed document is missing document_id")
 
+    source_file = document.get("source_filename")
+
     chunks: list[dict[str, Any]] = []
 
     for page in _document_pages(document):
@@ -181,7 +183,7 @@ def chunk_document(
                         "section": section_name,
                         "section_chunk_index": section_chunk_index,
                         "text": chunk_text,
-                        "source_file": document.get("source_file"),
+                        "source_file": source_file,
                     }
                 )
 
