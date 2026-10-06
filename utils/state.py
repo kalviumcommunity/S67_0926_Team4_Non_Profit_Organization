@@ -1,5 +1,6 @@
 """Folio Platform - Session State Management."""
 
+import os
 import streamlit as st
 from typing import Optional, Dict, Any, List
 from utils.constants import NAV_RESEARCH, DOC_TYPE_ALL
@@ -23,9 +24,26 @@ def init_session_state() -> None:
         "uploaded_documents": [],
         "show_upload_modal": False,
         "show_diff_drawer": False,
+        "show_settings_drawer": False,
         "is_loading_query": False,
         "query_error": None,
         "document_view_mode": "shelf", # "shelf" or "reader"
+        
+        # AI Controls (Persona, Format, Model)
+        "selected_persona": "Default",
+        "selected_format": "Default",
+        "selected_model": "google/gemini-2.5-flash",
+        
+        # OpenRouter & Pinecone Configuration
+        "openrouter_api_key": os.getenv("OPENROUTER_API_KEY", ""),
+        "pinecone_api_key": os.getenv("PINECONE_API_KEY", ""),
+        "pinecone_index_name": os.getenv("PINECONE_INDEX_NAME", "folio-grants"),
+        
+        # Multimedia Context Ingestion (PDF / Image / Video)
+        "doc_type": None,
+        "doc_content": None,
+        "multimedia_context": [],
+        "multimedia_preview_name": None
     }
     
     for key, val in defaults.items():

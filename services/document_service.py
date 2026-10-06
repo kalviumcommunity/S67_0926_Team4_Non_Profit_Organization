@@ -1,13 +1,21 @@
 """Folio Platform - Document Service Implementation."""
 
+import io
 import hashlib
 import time
 from typing import Dict, Any, List, Optional
 from services.base import BaseDocumentService
 from data.mock_documents import MOCK_DOCUMENTS
+from modules.utils import process_document_by_type
+from modules.pinecone_utils import (
+    get_pinecone_and_embedding_model,
+    upsert_chunks_to_pinecone,
+    DEFAULT_NAMESPACE
+)
 
-class MockDocumentService(BaseDocumentService):
-    """Mock implementation of Document Repository and Clause Search service."""
+
+class DocumentService(BaseDocumentService):
+    """Implementation of Document Repository, Clause Search, and Pinecone vector indexing service."""
     
     def __init__(self):
         self._documents: List[Dict[str, Any]] = list(MOCK_DOCUMENTS)
@@ -127,8 +135,11 @@ class MockDocumentService(BaseDocumentService):
                                 
         return results
 
-    def upload_document(self, file_bytes: bytes, filename: str) -> Dict[str, Any]:
-        """Process and index a newly uploaded grant document."""
+    def upload_document(self, file_bytes: bytes, filename: str, pinecone_index = None) -> Dict[str, Any]:
+        """
+        Process, extract text from, and index a newly uploaded grant document (.pdf, .docx, .html, .txt)
+        into Pinecone & session vault.
+        """
         hasher = hashlib.sha256()
         hasher.update(file_bytes)
         sha256_hash = hasher.hexdigest()
@@ -136,28 +147,32 @@ class MockDocumentService(BaseDocumentService):
         doc_id = f"DOC-UP-{int(time.time())}"
         clean_name = filename.rsplit(".", 1)[0].replace("_", " ").title()
         
-        new_doc = {
-            "id": doc_id,
-            "dossier_num": "09",
-            "title": clean_name.upper(),
-            "subtitle": f"Uploaded Archival Filing ({filename})",
-            "category": "Grant Guidelines" if "guideline" in filename.lower() else "Donor Agreements",
-            "organization": "Helios Grantee Partner",
-            "year": "2026",
-            "pages": max(4, len(file_bytes) // 4000),
-            "format": filename.split(".")[-1].upper() if "." in filename else "PDF",
-            "status": "Active",
-            "status_badge_type": "primary",
-            "ref_code": f"REF #UP-{doc_id[-4:]}",
-            "spine_color": "#1E382B",
-            "seal": "SEAL: OCR-INDEXED",
-            "doc_id_code": f"UP-{doc_id[-6:]}",
-            "sha256": sha256_hash,
-            "key_clauses": [
-                {"section": "§ 1.1", "title": "Program Scope & Eligibility", "page": 1, "highlight": False},
-                {"section": "§ 3.2", "title": "Quarterly Filing Commitments", "page": 2, "highlight": True},
-            ],
-            "full_text": f"""
+        # 1. Extract text chunks using unified multi-format processor (.pdf, .docx, .html, .txt)
+        bio = io.BytesIO(file_bytes)
+        extracted_chunks, extracted_full_text = process_document_by_type(bio, filename)
+
+        # 2. Upsert into Pinecone if index is available
+        pinecone_indexed = False
+        if pinecone_index and extracted_chunks:
+            try:
+                upsert_success = upsert_chunks_to_pinecone(
+                    pinecone_index,
+                    extracted_chunks,
+                    namespace=DEFAULT_NAMESPACE,
+                    doc_id=doc_id,
+                    extra_metadata={
+                        "document_id": doc_id,
+                        "document_title": clean_name.upper(),
+                        "source_file": filename,
+                        "sha256": sha256_hash
+                    }
+                )
+                pinecone_indexed = upsert_success
+            except Exception:
+                pinecone_indexed = False
+
+        if not extracted_full_text:
+            extracted_full_text = f"""
 # {clean_name.upper()}
 **Uploaded Document: {filename}**
 **Cryptographic Hash: {sha256_hash}**
@@ -167,9 +182,46 @@ class MockDocumentService(BaseDocumentService):
 ### SECTION 1. RECIPIENT COMPLIANCE & GOVERNANCE
 This document has been parsed and indexed into the Folio Institutional Knowledge Archive. All extracted clauses are available for zero-extrapolation verified synthesis.
             """
+
+        # Infer format label
+        fmt = "TXT"
+        if "." in filename:
+            ext = filename.split(".")[-1].upper()
+            if ext in ["DOCX", "DOC"]:
+                fmt = "WORD"
+            elif ext in ["HTML", "HTM"]:
+                fmt = "HTML"
+            elif ext == "PDF":
+                fmt = "PDF"
+            else:
+                fmt = ext
+
+        new_doc = {
+            "id": doc_id,
+            "dossier_num": "09",
+            "title": clean_name.upper(),
+            "subtitle": f"Uploaded Archival Filing ({filename})",
+            "category": "Grant Guidelines" if "guideline" in filename.lower() else "Donor Agreements",
+            "organization": "Helios Grantee Partner",
+            "year": "2026",
+            "pages": max(1, len(extracted_chunks)) if extracted_chunks else max(1, len(file_bytes) // 3000),
+            "format": fmt,
+            "status": "Active",
+            "status_badge_type": "primary",
+            "ref_code": f"REF #UP-{doc_id[-4:]}",
+            "spine_color": "#1E382B",
+            "seal": "SEAL: PINECONE-INDEXED" if pinecone_indexed else "SEAL: OCR-INDEXED",
+            "doc_id_code": f"UP-{doc_id[-6:]}",
+            "sha256": sha256_hash,
+            "key_clauses": [
+                {"section": "§ 1.1", "title": "Program Scope & Key Provisions", "page": 1, "highlight": False},
+                {"section": "§ 2.1", "title": "Reporting & Institutional Governance", "page": 1, "highlight": True},
+            ],
+            "full_text": extracted_full_text
         }
         
         return new_doc
 
+
 # Default Singleton Instance
-document_service = MockDocumentService()
+document_service = DocumentService()

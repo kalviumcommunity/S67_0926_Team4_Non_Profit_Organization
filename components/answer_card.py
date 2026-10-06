@@ -16,8 +16,12 @@ def render_answer_card(rag_data: Dict[str, Any]) -> None:
     headline = rag_data.get("editorial_headline", "REPORTING REQUIREMENTS")
     answer_lead = rag_data.get("answer_lead", "")
     answer_body = rag_data.get("answer_body", "")
+    raw_response = rag_data.get("raw_response", "")
+    output_format = rag_data.get("output_format", "Default")
     metrics = rag_data.get("metrics", [])
     sources = rag_data.get("sources", [])
+    telemetry = rag_data.get("pipeline_telemetry", {})
+    latency_val = telemetry.get("total_latency_ms", 1180)
     
     # Build 3-column Equal-Height Metrics HTML
     metrics_list = []
@@ -28,7 +32,7 @@ def render_answer_card(rag_data: Dict[str, Any]) -> None:
         numeral_color = "#082217" if m.get("numeral_color") == "primary" else "#A0401C"
         icon_name = m.get("pill_icon", "calendar_today")
         
-        m_item = f"""<div style="background-color: #FFFFFF; border: 1px solid #E4DFD3; border-radius: 4px; padding: 1.25rem 1.4rem; box-shadow: 0 2px 8px -2px rgba(44, 45, 42, 0.04); display: flex; flex-direction: column; justify-content: space-between; height: 100%; min-height: 175px;"><div><div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem;"><span style="display: inline-flex; align-items: center; gap: 0.25rem; background-color: {pill_bg}; color: {pill_text_color}; border-radius: 3px; padding: 0.15rem 0.5rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;"><span class="material-symbols-outlined" style="font-size: 13px;">{icon_name}</span>{m.get('pill_text', 'Deadline')}</span><span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; color: #727973; letter-spacing: 0.06em; text-transform: uppercase;">{m.get('sub_pill', '')}</span></div><div style="font-family: 'Newsreader', serif; font-size: 42px; font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: {numeral_color}; margin: 0.35rem 0 0.5rem 0;">{m.get('numeral', '')}</div></div><div style="border-top: 1px solid #EFEEE9; padding-top: 0.75rem; margin-top: 0.5rem;"><p style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 600; color: #1B1C19; margin: 0;">{m.get('title', '')}</p><p style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; color: #424844; margin: 0.2rem 0 0 0;">{m.get('subtext', '')}</p></div></div>"""
+        m_item = f"""<div style="background-color: #FFFFFF; border: 1px solid #E4DFD3; border-radius: 4px; padding: 1.25rem 1.4rem; box-shadow: 0 2px 8px -2px rgba(44, 45, 42, 0.04); display: flex; flex-direction: column; justify-content: space-between; height: 100%; min-height: 175px;"><div><div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem;"><span style="display: inline-flex; align-items: center; gap: 0.25rem; background-color: {pill_bg}; color: {pill_text_color}; border-radius: 3px; padding: 0.15rem 0.5rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;"><span class="material-symbols-outlined" style="font-size: 13px;">{icon_name}</span>{m.get('pill_text', 'Deadline')}</span><span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; color: #727973; letter-spacing: 0.06em; text-transform: uppercase;">{m.get('sub_pill', '')}</span></div><div style="font-family: 'Newsreader', serif; font-size: 38px; font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: {numeral_color}; margin: 0.35rem 0 0.5rem 0;">{m.get('numeral', '')}</div></div><div style="border-top: 1px solid #EFEEE9; padding-top: 0.75rem; margin-top: 0.5rem;"><p style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 600; color: #1B1C19; margin: 0;">{m.get('title', '')}</p><p style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; color: #424844; margin: 0.2rem 0 0 0;">{m.get('subtext', '')}</p></div></div>"""
         metrics_list.append(m_item)
     metrics_html = "".join(metrics_list)
 
@@ -44,6 +48,8 @@ def render_answer_card(rag_data: Dict[str, Any]) -> None:
         sources_list.append(s_item)
     sources_html = "".join(sources_list)
 
+    is_json = output_format == "JSON" or (raw_response and raw_response.strip().startswith("{") and raw_response.strip().endswith("}"))
+
     full_card_html = textwrap.dedent(f"""
     <div style="background-color: #F7F4EE; border: 1px solid #E4DFD3; border-radius: 8px; padding: 2rem 2.5rem; margin-top: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(44, 45, 42, 0.02);">
       <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #E4DFD3; padding-bottom: 1.25rem; margin-bottom: 1.75rem; flex-wrap: wrap; gap: 0.75rem;">
@@ -57,7 +63,7 @@ def render_answer_card(rag_data: Dict[str, Any]) -> None:
           </span>
         </div>
         <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <span style="font-family: ui-monospace, monospace; font-size: 10px; background-color: #E8EFEA; color: #1E382B; border: 1px solid #C2D9CB; padding: 2px 7px; border-radius: 3px; font-weight: 600;">⚡ 1,180 ms · 5 RAG Steps</span>
+          <span style="font-family: ui-monospace, monospace; font-size: 10px; background-color: #E8EFEA; color: #1E382B; border: 1px solid #C2D9CB; padding: 2px 7px; border-radius: 3px; font-weight: 600;">⚡ {latency_val} ms · RAG Telemetry</span>
           <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; color: #727973; text-transform: uppercase;">{spec_badge}</span>
         </div>
       </div>
@@ -70,9 +76,9 @@ def render_answer_card(rag_data: Dict[str, Any]) -> None:
         <p style="font-family: 'Newsreader', serif; font-size: 20px; font-weight: 500; line-height: 1.5; color: #1B1C19; margin: 0 0 0.85rem 0;">
           {answer_lead}
         </p>
-        <p style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 400; line-height: 1.65; color: #424844; margin: 0;">
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 400; line-height: 1.65; color: #424844; margin: 0; white-space: pre-line;">
           {answer_body}
-        </p>
+        </div>
       </div>
       
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 2.25rem;">
@@ -82,7 +88,7 @@ def render_answer_card(rag_data: Dict[str, Any]) -> None:
       <div style="border-top: 1px solid #E4DFD3; padding-top: 1.75rem; margin-bottom: 1rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
           <div style="display: flex; align-items: center; gap: 0.75rem;">
-            <h3 style="font-family: 'Newsreader', serif; font-size: 20px; font-weight: 500; color: #082217; margin: 0;">Sources</h3>
+            <h3 style="font-family: 'Newsreader', serif; font-size: 20px; font-weight: 500; color: #082217; margin: 0;">Sources & Cited Charters</h3>
             <span style="background-color: #EFEEE9; border: 1px solid #E4DFD3; border-radius: 4px; padding: 0.2rem 0.65rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; color: #424844; text-transform: uppercase; letter-spacing: 0.05em;">
               {len(sources)} primary agreements cited
             </span>
@@ -97,10 +103,14 @@ def render_answer_card(rag_data: Dict[str, Any]) -> None:
     
     st.html(full_card_html)
     
+    # Render JSON Viewer if output format was JSON
+    if is_json and raw_response:
+        with st.expander("📄 View Parsed JSON Output", expanded=True):
+            st.code(raw_response, language="json")
+
     # RAG Pipeline Execution Flow Inspector
-    telemetry = rag_data.get("pipeline_telemetry", {})
     if telemetry and telemetry.get("pipeline_stages"):
-        with st.expander("⚡ Inspect RAG Pipeline Execution Flow (Latency: 1,180 ms)", expanded=False):
+        with st.expander(f"⚡ Inspect RAG Pipeline Execution Flow (Latency: {latency_val} ms)", expanded=False):
             stages = telemetry.get("pipeline_stages", [])
             stage_cards = []
             for s in stages:

@@ -3,6 +3,7 @@
 import streamlit as st
 import textwrap
 from utils.constants import NAV_RESEARCH, NAV_EVIDENCE, NAV_DOCUMENTS, NAV_ABOUT
+from modules.openrouter_utils import resolve_openrouter_api_key
 
 def render_top_navbar() -> None:
     """Render the sticky shared top navigation bar matching the Stitch editorial design."""
@@ -47,7 +48,13 @@ def render_top_navbar() -> None:
                 st.rerun()
             
     with col_tools:
-        tools_html = """<div style="display: flex; justify-content: flex-end; align-items: center; gap: 0.75rem; height: 100%; padding-top: 0.15rem;"><div class="folio-workspace-badge" style="background-color: #E8EFEA; border: 1px solid #C2D9CB; padding: 3px 8px;"><span class="folio-workspace-dot" style="background-color: #1E382B;"></span><span style="font-weight: 700; color: #1E382B; font-size: 10.5px; letter-spacing: 0.02em;">HNSW: 48 Vectors Synced</span></div><div class="folio-workspace-badge"><span class="folio-workspace-dot"></span><span style="font-weight: 600; color: #1B1C19;">Helios Foundation 2025–26 Grants</span><span style="color: #63625D; font-size: 11px; margin-left: 2px;">· 4 agreements</span></div><div class="folio-search-trigger" style="cursor: default;"><span class="material-symbols-outlined" style="font-size: 15px; color: #63625D;">search</span><span>⌘K Search</span></div><div style="color: #082217; display: flex; align-items: center; cursor: pointer; padding: 2px;"><span class="material-symbols-outlined" style="font-size: 24px; color: #082217;">account_circle</span></div></div>"""
+        has_or_key = bool(resolve_openrouter_api_key())
+        model_name = st.session_state.get("selected_model", "gemini-2.5-flash").split("/")[-1]
+        
+        badge_text = f"⚡ OpenRouter: {model_name}" if has_or_key else "⚡ HNSW: 48 Vectors Synced"
+        badge_bg = "#E8EFEA" if has_or_key else "#F5F4EF"
+        
+        tools_html = f"""<div style="display: flex; justify-content: flex-end; align-items: center; gap: 0.75rem; height: 100%; padding-top: 0.15rem;"><div class="folio-workspace-badge" style="background-color: {badge_bg}; border: 1px solid #C2D9CB; padding: 3px 8px;"><span class="folio-workspace-dot" style="background-color: #1E382B;"></span><span style="font-weight: 700; color: #1E382B; font-size: 10.5px; letter-spacing: 0.02em;">{badge_text}</span></div><div class="folio-workspace-badge"><span class="folio-workspace-dot"></span><span style="font-weight: 600; color: #1B1C19;">Helios Foundation 2025–26 Grants</span><span style="color: #63625D; font-size: 11px; margin-left: 2px;">· 4 agreements</span></div><div class="folio-search-trigger" style="cursor: default;"><span class="material-symbols-outlined" style="font-size: 15px; color: #63625D;">search</span><span>⌘K Search</span></div><div style="color: #082217; display: flex; align-items: center; cursor: pointer; padding: 2px;"><span class="material-symbols-outlined" style="font-size: 24px; color: #082217;">account_circle</span></div></div>"""
         st.html(tools_html)
         
     st.html('</div>')

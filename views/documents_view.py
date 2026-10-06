@@ -142,20 +142,20 @@ def render_documents_view() -> None:
     if not show_upload:
         dropzone_html = textwrap.dedent("""
         <div style="margin-top: 3.5rem; border: 2px dashed #C2C8C2; background-color: rgba(255, 255, 255, 0.6); border-radius: 6px; padding: 2.5rem 2rem; text-align: center; transition: all 0.2s ease;">
-          <div style="max-width: 520px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
+          <div style="max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
             <div style="width: 48px; height: 48px; border-radius: 50%; background-color: #EFEEE9; display: flex; align-items: center; justify-content: center; color: #082217; margin-bottom: 0.75rem;">
               <span class="material-symbols-outlined" style="font-size: 24px;">upload_file</span>
             </div>
             <h4 style="font-family: 'Newsreader', serif; font-size: 20px; font-weight: 500; color: #082217; margin: 0 0 0.35rem 0;">
-              Drop PDF, DOCX or agreements here
+              Upload PDF, Word (.docx), HTML or TXT documents
             </h4>
             <p style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: #424844; margin: 0;">
-              Drop grant agreements or donor guidelines here · OCR and provenance indexing are automatic
+              Drop grant agreements, bylaws, or guidelines here · Automatic text chunking, SHA-256 validation & Pinecone indexing
             </p>
             <div style="margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; color: #727973;">
-              <span>Supported: PDF/A, DOCX, Scanned TIFF</span>
+              <span>Supported: PDF, Word (.docx), HTML (.html), Text (.txt, .md)</span>
               <span>·</span>
-              <span style="color: #082217; font-weight: 600; text-decoration: underline; cursor: pointer;">Browse file system</span>
+              <span style="color: #082217; font-weight: 600;">Use "+ Add documents" above to browse</span>
             </div>
           </div>
         </div>
