@@ -143,47 +143,32 @@ def load_all_data():
     return documents
 
 
-# --------------------------------------------------
-# 6. Load data
-# --------------------------------------------------
+def run_indexing(data_dir=DATA_DIR, vector_db_dir=VECTOR_DB_DIR):
+    documents = load_all_data()
+    print("Documents loaded:", len(documents))
 
-documents = load_all_data()
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=800,
+        chunk_overlap=100
+    )
 
-print("Documents loaded:", len(documents))
+    chunks = text_splitter.split_documents(documents)
+    print("Chunks created:", len(chunks))
 
+    embeddings = OpenAIEmbeddings(
+        model="text-embedding-3-small"
+    )
 
-# --------------------------------------------------
-# 7. Chunk documents
-# --------------------------------------------------
+    vectorstore = Chroma.from_documents(
+        documents=chunks,
+        embedding=embeddings,
+        persist_directory=vector_db_dir,
+        collection_name="donor_knowledge"
+    )
 
-text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=800,
-    chunk_overlap=100
-)
-
-chunks = text_splitter.split_documents(documents)
-
-print("Chunks created:", len(chunks))
-
-
-# --------------------------------------------------
-# 8. Generate embeddings
-# --------------------------------------------------
-
-embeddings = OpenAIEmbeddings(
-    model="text-embedding-3-small"
-)
+    print("Indexing completed.")
+    return vectorstore
 
 
-# --------------------------------------------------
-# 9. Create vector database
-# --------------------------------------------------
-
-vectorstore = Chroma.from_documents(
-    documents=chunks,
-    embedding=embeddings,
-    persist_directory=VECTOR_DB_DIR,
-    collection_name="donor_knowledge"
-)
-
-print("Indexing completed.")
+if __name__ == "__main__":
+    run_indexing()
