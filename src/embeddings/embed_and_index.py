@@ -112,12 +112,39 @@ def _pinecone_index():
     return Pinecone(api_key=key).Index(name)
 
 def _metadata(chunk):
-    allowed = (
-        "document_id", "chunk_id", "document_name", "source_file",
-        "page_number", "section", "section_chunk_index",
-        "version", "effective_date", "document_type",
+    """Build Pinecone metadata and preserve the chunk text."""
+
+    text = str(chunk.get("text", "")).strip()
+
+    if not text:
+        raise EmbeddingError(
+            f"Chunk {chunk.get('chunk_id')} has empty text."
+        )
+
+    metadata = {
+        "document_id": str(chunk["document_id"]),
+        "chunk_id": str(chunk["chunk_id"]),
+        "text": text,
+    }
+
+    optional_fields = (
+        "document_name",
+        "source_file",
+        "page_number",
+        "section",
+        "section_chunk_index",
+        "version",
+        "effective_date",
+        "document_type",
     )
-    return {k: chunk[k] for k in allowed if chunk.get(k) not in (None, "")}
+
+    for field in optional_fields:
+        value = chunk.get(field)
+
+        if value not in (None, ""):
+            metadata[field] = value
+
+    return metadata
 
 def index_chunks(embedded_chunks, *, index=None, namespace=None,
                  batch_size=DEFAULT_BATCH_SIZE):
