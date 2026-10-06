@@ -1,0 +1,25 @@
+{
+  "document_id": "sha256:837faca99186e9041eab91477a9afb0353daca845110c62a356fa7c031f8d417",
+  "source_file": null,
+  "chunk_count": 2,
+  "chunks": [
+    {
+      "document_id": "sha256:837faca99186e9041eab91477a9afb0353daca845110c62a356fa7c031f8d417",
+      "chunk_id": "sha256:837faca99186e9041eab91477a9afb0353daca845110c62a356fa7c031f8d417_chunk_0001",
+      "page_number": 1,
+      "section": "Animal Welfare Grant Guidelines",
+      "section_chunk_index": 1,
+      "text": "Fictional test document — not a real grant or funding offer",
+      "source_file": null
+    },
+    {
+      "document_id": "sha256:837faca99186e9041eab91477a9afb0353daca845110c62a356fa7c031f8d417",
+      "chunk_id": "sha256:837faca99186e9041eab91477a9afb0353daca845110c62a356fa7c031f8d417_chunk_0002",
+      "page_number": 1,
+      "section": "Program: Community Animal Care Grant",
+      "section_chunk_index": 1,
+      "text": "Grant period: 1 April 2027 – 31 March 2028 Maximum grant: INR10,00,000 Purpose The fictional grant supports registered animal welfare organizations providing food, veterinary care, vaccination, sterilization and temporary shelter for rescued animals. Eligible expenses Animal food; veterinary consultations and medicines; vaccination and sterilization; emergency treatment; shelter hygiene supplies; and approved transport for rescue operations. Ineligible expenses Personal expenses, unrelated construction, political activities, fines, and costs without supporting records. Reporting requirements Recipients must submit quarterly expenditure statements and a final impact report. The fictional reporting dates are 30 June 2027, 30 September 2027, 31 December 2027 and 15 April 2028. Donation records Organizations should maintain donation receipts, transaction references, expense vouchers and evidence of program activities. Grant funds and individual donations must be reported separately.",
+      "source_file": null
+    }
+  ]
+}
