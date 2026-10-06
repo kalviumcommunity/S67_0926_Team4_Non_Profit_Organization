@@ -1,0 +1,25 @@
+{
+  "document_id": "sha256:526ab3c1869ceb75e3f14528d636e15fcea534f926868e81eb13380166078b82",
+  "source_file": null,
+  "chunk_count": 2,
+  "chunks": [
+    {
+      "document_id": "sha256:526ab3c1869ceb75e3f14528d636e15fcea534f926868e81eb13380166078b82",
+      "chunk_id": "sha256:526ab3c1869ceb75e3f14528d636e15fcea534f926868e81eb13380166078b82_chunk_0001",
+      "page_number": 1,
+      "section": "Animal Shelter Donation Impact Report",
+      "section_chunk_index": 1,
+      "text": "Fictional test document — all figures are illustrative",
+      "source_file": null
+    },
+    {
+      "document_id": "sha256:526ab3c1869ceb75e3f14528d636e15fcea534f926868e81eb13380166078b82",
+      "chunk_id": "sha256:526ab3c1869ceb75e3f14528d636e15fcea534f926868e81eb13380166078b82_chunk_0002",
+      "page_number": 1,
+      "section": "Organization: Happy Tails Animal Rescue",
+      "section_chunk_index": 1,
+      "text": "Reporting period: 1 April – 30 September 2027 Donation summary Individual donations received: INR4,80,000 Institutional contributions received: INR2,20,000 Total contributions: INR7,00,000 Program activity Animals provided with food support: 185 Animals receiving veterinary consultations: 96 Vaccinations administered: 140 Sterilization procedures supported: 38 Animals rescued and admitted: 52 Expenditure summary Animal food: INR2,10,000 Veterinary care and medicines: INR1,65,000 Vaccination and sterilization: INR95,000 Rescue transport: INR40,000 Shelter hygiene supplies: INR30,000 Total listed expenditure: INR5,40,000 Interpretation These counts describe reported activities in this fictional example. They do not establish long-term animal health outcomes or prove that donations alone caused any observed change. Supporting receipts and service records would be required for verification.",
+      "source_file": null
+    }
+  ]
+}

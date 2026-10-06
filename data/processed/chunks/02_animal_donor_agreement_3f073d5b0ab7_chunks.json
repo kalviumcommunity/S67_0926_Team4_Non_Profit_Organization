@@ -1,0 +1,34 @@
+{
+  "document_id": "sha256:3f073d5b0ab7281eed6e835179e8aaa31c84208aa29236086fb7c05f11773596",
+  "source_file": null,
+  "chunk_count": 3,
+  "chunks": [
+    {
+      "document_id": "sha256:3f073d5b0ab7281eed6e835179e8aaa31c84208aa29236086fb7c05f11773596",
+      "chunk_id": "sha256:3f073d5b0ab7281eed6e835179e8aaa31c84208aa29236086fb7c05f11773596_chunk_0001",
+      "page_number": 1,
+      "section": "Animal Welfare Donor Agreement",
+      "section_chunk_index": 1,
+      "text": "Fictional test document — not a legal agreement",
+      "source_file": null
+    },
+    {
+      "document_id": "sha256:3f073d5b0ab7281eed6e835179e8aaa31c84208aa29236086fb7c05f11773596",
+      "chunk_id": "sha256:3f073d5b0ab7281eed6e835179e8aaa31c84208aa29236086fb7c05f11773596_chunk_0002",
+      "page_number": 1,
+      "section": "Recipient: Happy Tails Animal Rescue (fictional)",
+      "section_chunk_index": 1,
+      "text": "Donation reference: SYN-DON-2027-001 Donation amount: INR25,000",
+      "source_file": null
+    },
+    {
+      "document_id": "sha256:3f073d5b0ab7281eed6e835179e8aaa31c84208aa29236086fb7c05f11773596",
+      "chunk_id": "sha256:3f073d5b0ab7281eed6e835179e8aaa31c84208aa29236086fb7c05f11773596_chunk_0003",
+      "page_number": 1,
+      "section": "Date: 12 April 2027",
+      "section_chunk_index": 1,
+      "text": "Purpose The donor intends this contribution to support food, veterinary treatment and vaccination for rescued dogs and cats cared for by the recipient. Use of funds The recipient should use the donation for the stated animal welfare purpose and retain invoices, receipts and relevant records. If the specified purpose cannot reasonably be fulfilled, the recipient should contact the donor before reallocating the funds. Acknowledgment The recipient will provide a donation acknowledgment showing the date, amount and transaction reference. Any tax benefit, if applicable, must be confirmed separately under the recipient's actual legal status and applicable law. Privacy Donor contact and transaction information should be handled securely and used only for legitimate donation administration and communication.",
+      "source_file": null
+    }
+  ]
+}
