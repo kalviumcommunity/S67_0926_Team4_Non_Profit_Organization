@@ -91,55 +91,97 @@ Sprint 2/
 
 ### 1. Prerequisites
 - Python 3.10+
-- Streamlit 1.35+
+- pip
+- A valid OpenRouter API key
 
-### 2. Install Dependencies
+### 2. Set up your environment
+Create a `.env` file in the project root with one of these keys:
+
+```env
+OPENROUTER_API_KEY=your_key_here
+```
+
+The backend also accepts:
+
+```env
+Open_router_API_KEY=your_key_here
+```
+
+### 3. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Run the Application
+### 4. Start the backend API
+```bash
+python Back_end/app.py
+```
+
+The backend will run at:
+```text
+http://localhost:8000
+```
+
+Available routes:
+- `GET /` — service check
+- `GET /health` — health endpoint
+- `POST /ask` — submit a question and receive an answer from OpenRouter
+
+### 5. Start the Streamlit app
 ```bash
 streamlit run app.py
 ```
 
-The application will open in your browser at `http://localhost:8501`.
+The frontend will open at:
+```text
+http://localhost:8501
+```
+
+---
+
+## OpenRouter Backend API
+
+The backend file is located at [Back_end/app.py](Back_end/app.py). It exposes a simple chat endpoint that reads the API key from `.env` and sends the request to OpenRouter.
+
+### Request example
+```bash
+curl -X POST http://localhost:8000/ask \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "What are the reporting deadlines?",
+    "model": "openai/gpt-4o-mini",
+    "system_prompt": "You are a helpful grant assistant."
+  }'
+```
+
+### Response example
+```json
+{
+  "answer": "The reporting deadline is typically 30 days after the funding cycle closes.",
+  "model": "openai/gpt-4o-mini"
+}
+```
 
 ---
 
 ## Complete Demo Flow Walkthrough
 
 1. **Launch Folio:** Open `http://localhost:8501`. Notice the Quiet Editorial typography, warm ivory paper canvas, and top navbar.
-2. **Execute a Query:** In the `Research` page, click on the suggestion chip `"Reporting deadlines"` (or type `"What are the reporting requirements?"`).
-3. **Inspect Grounded Answer:** View the synthesized answer with `PORTAL VERIFIED SPECIFICATION` seal, 3 metric blocks (`30 DAYS`, `YEAR END`, `10% CAP`), and 2 mini citation sheets.
-4. **Follow Provenance:** Click `"View evidence →"`. The app navigates to `Evidence`, rendering the **Authority & Citation Branch Lineage Tree** and physical document paper sheets with highlighted clauses.
-5. **Inspect Cross-Instrument Diff:** Click `"⚙ Side-by-side Diff"` in the Provisional Reconciler to view structural clause deltas between the 2023 baseline and 2025 active rule.
-6. **Export Audit Dossier:** Click `"Export Audit Dossier (.PDF)"` to download the verified audit trail.
-7. **Browse Digital Archive:** Click `"Open Document Archive →"` (or `"Documents"` in top nav) to view the archival shelf of executed agreements and guidelines.
-8. **Test Fast Clause Search:** In the search bar, type `indirect costs`. The instant matching drawer opens showing highlighted clauses from both Grant Guidelines and Donor Agreements.
-9. **Inspect Document Dossier:** Click `"Inspect →"` on *Grant Guidelines* to read the full document dossier and verify metadata.
-10. **Test Document Upload:** Click `"+ Add documents"` and upload a sample grant agreement file to watch the multi-step indexing simulation in real time.
+2. **Start the API:** Run the backend command above to make the chat route available.
+3. **Execute a Query:** In the `Research` page, click on the suggestion chip `"Reporting deadlines"` (or type `"What are the reporting requirements?"`).
+4. **Inspect Grounded Answer:** View the synthesized answer with `PORTAL VERIFIED SPECIFICATION` seal, 3 metric blocks (`30 DAYS`, `YEAR END`, `10% CAP`), and 2 mini citation sheets.
+5. **Follow Provenance:** Click `"View evidence →"`. The app navigates to `Evidence`, rendering the **Authority & Citation Branch Lineage Tree** and physical document paper sheets with highlighted clauses.
+6. **Inspect Cross-Instrument Diff:** Click `"⚙ Side-by-side Diff"` in the Provisional Reconciler to view structural clause deltas between the 2023 baseline and 2025 active rule.
+7. **Export Audit Dossier:** Click `"Export Audit Dossier (.PDF)"` to download the verified audit trail.
+8. **Browse Digital Archive:** Click `"Open Document Archive →"` (or `"Documents"` in top nav) to view the archival shelf of executed agreements and guidelines.
+9. **Test Fast Clause Search:** In the search bar, type `indirect costs`. The instant matching drawer opens showing highlighted clauses from both Grant Guidelines and Donor Agreements.
+10. **Inspect Document Dossier:** Click `"Inspect →"` on *Grant Guidelines* to read the full document dossier and verify metadata.
+11. **Test Document Upload:** Click `"+ Add documents"` and upload a sample grant agreement file to watch the multi-step indexing simulation in real time.
 
 ---
 
-## How to Connect a Real RAG Backend
+## Notes
 
-The frontend architecture strictly isolates UI components from backend logic through clean abstract service interfaces (`services/base.py`).
-
-To connect a real RAG backend:
-1. Create `services/real_rag_service.py` implementing `BaseRAGService`:
-   ```python
-   import requests
-   from services.base import BaseRAGService
-   from config.settings import settings
-
-   class RealRAGService(BaseRAGService):
-       def ask_question(self, query: str):
-           response = requests.post(
-               f"{settings.RAG_API_URL}/query",
-               headers={"Authorization": f"Bearer {settings.RAG_API_KEY}"},
-               json={"query": query}
-           )
-           return response.json()
-   ```
-2. Replace `rag_service = MockRAGService()` in `services/rag_service.py` with `rag_service = RealRAGService()`. No UI code needs to be modified.
+- This project now includes a working local chatbot backend powered by OpenRouter.
+- The backend reads the API key from `.env`, so you do not need to hardcode secrets in code.
+- If you want the app to serve real answers from your own grant data, the next step is to connect the `/ask` route to your retrieval or indexing pipeline.
