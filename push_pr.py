@@ -648,13 +648,9 @@ def stage_and_commit(mod, branch_name, custom_message=None, dry_run=False):
             run_git(["checkout", branch_name])
             print(f"   Checked out existing branch: {branch_name}")
         else:
-            # Create new branch from origin/main if available, otherwise current HEAD
-            try:
-                run_git(["checkout", "-b", branch_name, f"origin/{BASE_BRANCH}"])
-                print(f"   Created and checked out new branch '{branch_name}' from origin/{BASE_BRANCH}")
-            except Exception:
-                run_git(["checkout", "-b", branch_name])
-                print(f"   Created and checked out new branch '{branch_name}'")
+            # Create new branch from current HEAD to retain all full codebase files
+            run_git(["checkout", "-b", branch_name])
+            print(f"   Created and checked out new branch '{branch_name}' from current HEAD")
     else:
         print(f"   Already on branch: {branch_name}")
 
